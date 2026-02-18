@@ -11,38 +11,55 @@
   --border:#1e2d45;--border2:#253450;
   --accent:#4f7ef8;--accent2:#7c3aed;--accentg:linear-gradient(135deg,#4f7ef8,#7c3aed);
   --text:#e8edf5;--muted:#64748b;--muted2:#94a3b8;--muted3:#cbd5e1;
+  --panel-w:300px;--topbar-h:50px;--bottombar-h:50px;
 }
-body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column}
 
 /* ── TOPBAR ── */
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:50px;background:var(--surf);border-bottom:1px solid var(--border);flex-shrink:0;gap:12px}
-.tb-left{display:flex;align-items:center;gap:12px}
-.logo{width:30px;height:30px;background:var(--accentg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;flex-shrink:0}
-.tb-title{font-size:12.5px;font-weight:700;color:var(--text)}
-.tb-sub{font-size:10.5px;color:var(--muted)}
-.tabs{display:flex;gap:3px;background:var(--bg);padding:3px;border-radius:9px;border:1px solid var(--border)}
-.tab{padding:4px 12px;border-radius:6px;font-size:10.5px;font-weight:600;cursor:pointer;color:var(--muted);transition:all .2s;white-space:nowrap;border:none;background:transparent}
-.tab:hover{color:var(--text);background:var(--surf2)}
-.tab.active{background:var(--accentg);color:#fff}
-.pills{display:flex;align-items:center;gap:8px}
-.pill{background:var(--surf2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:10px;color:var(--muted2);display:flex;align-items:center;gap:5px}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:var(--topbar-h);background:var(--surf);border-bottom:1px solid var(--border);flex-shrink:0;gap:10px;z-index:100}
+.tb-left{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{width:28px;height:28px;background:var(--accentg);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;flex-shrink:0}
+.tb-titles{min-width:0}
+.tb-title{font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-sub{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.pills{display:flex;align-items:center;gap:6px}
+.pill{background:var(--surf2);border:1px solid var(--border);border-radius:20px;padding:3px 9px;font-size:10px;color:var(--muted2);display:flex;align-items:center;gap:4px}
 .pill strong{color:var(--text)}
 .dot{width:6px;height:6px;border-radius:50%}
 .dH{background:#ef4444}.dM{background:#f59e0b}.dL{background:#10b981}
+/* hamburger for mobile panel toggle */
+.panel-toggle{display:none;background:var(--surf2);border:1px solid var(--border);border-radius:7px;padding:5px 8px;cursor:pointer;color:var(--muted2);font-size:13px;line-height:1;flex-shrink:0}
+
+/* ── PAGE TABS ── */
+.pagetabs-wrap{background:var(--surf);border-bottom:1px solid var(--border);flex-shrink:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.pagetabs-wrap::-webkit-scrollbar{display:none}
+.pagetabs{display:flex;gap:2px;padding:6px 12px;min-width:max-content}
+.ptab{padding:5px 13px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;color:var(--muted);transition:all .18s;white-space:nowrap;border:none;background:transparent}
+.ptab:hover{color:var(--text);background:var(--surf2)}
+.ptab.active{background:var(--accentg);color:#fff}
 
 /* ── MAIN ── */
-.main{display:flex;flex:1;overflow:hidden}
+.main{display:flex;flex:1;overflow:hidden;position:relative}
 
 /* ── CANVAS ── */
-.canvas{flex:1;overflow:auto;background:#080d16;padding:20px;background-image:radial-gradient(circle at 1px 1px,#1a2540 1px,transparent 0);background-size:22px 22px}
+.canvas{flex:1;overflow:auto;background:#080d16;padding:16px;background-image:radial-gradient(circle at 1px 1px,#1a2540 1px,transparent 0);background-size:22px 22px;transition:margin-right .25s}
 .pv-label{text-align:center;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.browser{width:820px;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px var(--border),0 20px 70px rgba(0,0,0,.75)}
+
+/* scaled browser chrome */
+.browser-outer{width:100%;max-width:860px;margin:0 auto}
+.browser{border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px var(--border),0 16px 60px rgba(0,0,0,.7)}
 .bbar{background:#141e30;padding:7px 12px;display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--border)}
 .bdots{display:flex;gap:5px}
 .bdots span{width:9px;height:9px;border-radius:50%}
 .br{background:#ef4444}.by{background:#f59e0b}.bg{background:#22c55e}
-.burl{flex:1;background:#0d1420;border:1px solid var(--border);border-radius:4px;padding:3px 9px;font-size:10.5px;color:var(--muted2)}
-.mockup{background:#fff;position:relative;font-family:-apple-system,sans-serif}
+.burl{flex:1;background:#0d1420;border:1px solid var(--border);border-radius:4px;padding:3px 9px;font-size:10px;color:var(--muted2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* The actual page mockup is scaled via CSS transform to always fit the canvas width */
+.mockup-scaler{width:100%;overflow:hidden;position:relative}
+.mockup{background:#fff;position:relative;font-family:-apple-system,sans-serif;width:820px;transform-origin:top left}
+
 .page-view{display:none}
 .page-view.active{display:block}
 
@@ -50,434 +67,474 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
 .anno{position:absolute;border-radius:3px;cursor:pointer;transition:all .18s;z-index:10}
 .anno:hover,.anno.hov{z-index:20;filter:brightness(1.3)}
 .anno.sel{z-index:25;filter:brightness(1.4);box-shadow:0 0 0 3px rgba(255,255,255,.25)}
-.apill{position:absolute;top:-1px;left:-1px;color:#fff;font-size:9.5px;font-weight:800;padding:3px 9px 3px 6px;border-radius:3px 0 6px 0;white-space:nowrap;display:flex;align-items:center;gap:4px;text-shadow:0 1px 2px rgba(0,0,0,.5)}
-.apill .n{background:rgba(255,255,255,.25);border-radius:3px;width:15px;height:15px;display:flex;align-items:center;justify-content:center;font-size:8.5px}
+.apill{position:absolute;top:-1px;left:-1px;color:#fff;font-size:9px;font-weight:800;padding:2px 7px 2px 5px;border-radius:3px 0 5px 0;white-space:nowrap;display:flex;align-items:center;gap:3px;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.apill .n{background:rgba(255,255,255,.25);border-radius:3px;width:13px;height:13px;display:flex;align-items:center;justify-content:center;font-size:8px}
 
-/* ── MOCKUP ELEMENTS ── */
+/* ── MOCKUP ELEMENTS (same as before, slightly tightened) ── */
 .nav{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 18px;height:52px;display:flex;align-items:center;justify-content:space-between}
 .nb{font-size:19px;font-weight:900;color:#6d28d9;letter-spacing:-1px;display:flex;align-items:center;gap:7px}
-.nbw{display:flex;flex-direction:column;font-size:7.5px;color:#666;line-height:1.3}
-.nl{display:flex;gap:12px;font-size:10.5px;color:#222}
-.na{display:flex;align-items:center;gap:10px;font-size:11px}
+.nbw{display:flex;flex-direction:column;font-size:7px;color:#666;line-height:1.3}
+.nl{display:flex;gap:10px;font-size:10px;color:#222}
+.na{display:flex;align-items:center;gap:8px;font-size:10px}
 .nsi{font-weight:700;color:#6d28d9}
 .sub-nav{background:#f0eeff;border-bottom:2px solid #e9d5ff;padding:0 18px;display:flex;gap:0}
-.sn-item{padding:9px 14px;font-size:10.5px;font-weight:600;color:#6d28d9;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px}
+.sn-item{padding:8px 12px;font-size:10px;font-weight:600;color:#6d28d9;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px}
 .sn-item.sna{border-bottom-color:#6d28d9;color:#2d1a8a}
-.geo{background:#f8f8f8;border-bottom:1px solid #eee;padding:5px 18px;font-size:11px;color:#555;text-align:center}
+.geo{background:#f8f8f8;border-bottom:1px solid #eee;padding:4px 18px;font-size:10.5px;color:#555;text-align:center}
 .geo a{color:#6d28d9;font-weight:700;text-decoration:none}
 .geo strong{color:#111}
-.hero{background:linear-gradient(120deg,#ddd8ef 0%,#c9c2e4 60%,#b8b0d8 100%);padding:36px 36px 0;display:flex;align-items:flex-end;min-height:240px;position:relative;overflow:hidden}
-.ht{flex:0 0 52%;padding-bottom:32px}
-.hey{font-size:10px;color:#555;margin-bottom:5px;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
-.hh{font-size:22px;font-weight:900;color:#2d1a8a;line-height:1.2;margin-bottom:7px}
-.hb{font-size:11px;color:#444;margin-bottom:12px;line-height:1.6}
-.hp{margin-bottom:14px;color:#111}
-.hp .amt{font-size:36px;font-weight:900;line-height:1}
-.hp .per{font-size:11px;color:#444}
-.hctas{display:flex;gap:9px;align-items:center}
-.btnp{background:#111;color:#fff;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:700;border:none;cursor:pointer}
-.btnl{font-size:11px;color:#2d1a8a;text-decoration:underline;cursor:pointer}
-.hv{flex:1;min-height:240px;display:flex;align-items:flex-end;justify-content:flex-end}
-.hib{width:220px;height:220px;background:linear-gradient(150deg,#bbb5d8,#9890c4);border-radius:8px 8px 0 0;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px}
-.hib::before{content:'X';position:absolute;font-size:140px;font-weight:900;color:rgba(255,255,255,.1);right:8px;bottom:0;line-height:1}
+.hero{background:linear-gradient(120deg,#ddd8ef 0%,#c9c2e4 60%,#b8b0d8 100%);padding:32px 32px 0;display:flex;align-items:flex-end;min-height:220px;position:relative;overflow:hidden}
+.ht{flex:0 0 52%;padding-bottom:28px}
+.hey{font-size:9.5px;color:#555;margin-bottom:5px;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.hh{font-size:20px;font-weight:900;color:#2d1a8a;line-height:1.2;margin-bottom:6px}
+.hb{font-size:10.5px;color:#444;margin-bottom:10px;line-height:1.6}
+.hp{margin-bottom:13px;color:#111}
+.hp .amt{font-size:32px;font-weight:900;line-height:1}
+.hp .per{font-size:10.5px;color:#444}
+.hctas{display:flex;gap:8px;align-items:center}
+.btnp{background:#111;color:#fff;padding:7px 14px;border-radius:6px;font-size:10.5px;font-weight:700;border:none;cursor:pointer}
+.btnl{font-size:10.5px;color:#2d1a8a;text-decoration:underline;cursor:pointer}
+.hv{flex:1;min-height:220px;display:flex;align-items:flex-end;justify-content:flex-end}
+.hib{width:200px;height:200px;background:linear-gradient(150deg,#bbb5d8,#9890c4);border-radius:8px 8px 0 0;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px}
+.hib::before{content:'X';position:absolute;font-size:130px;font-weight:900;color:rgba(255,255,255,.1);right:8px;bottom:0;line-height:1}
 .hath{display:flex;gap:5px;position:relative;z-index:2}
-.han{background:rgba(255,255,255,.92);color:#222;font-size:8.5px;font-weight:700;padding:2px 7px;border-radius:20px}
-.hab{background:transparent;border:1.5px solid rgba(255,255,255,.85);color:#fff;font-size:8.5px;font-weight:700;padding:2px 7px;border-radius:20px}
+.han{background:rgba(255,255,255,.92);color:#222;font-size:8px;font-weight:700;padding:2px 6px;border-radius:20px}
+.hab{background:transparent;border:1.5px solid rgba(255,255,255,.85);color:#fff;font-size:8px;font-weight:700;padding:2px 6px;border-radius:20px}
 .bento{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #e5e7eb}
-.bc{padding:14px 12px;border-right:1px solid #e5e7eb;display:flex;gap:7px;align-items:flex-start}
+.bc{padding:12px 10px;border-right:1px solid #e5e7eb;display:flex;gap:6px;align-items:flex-start}
 .bc:last-child{border-right:none}
-.bct{flex:1;font-size:11px;color:#222;font-weight:600;line-height:1.4}
-.bci{width:40px;height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px}
-.bcn{color:#3b1fa8;font-size:27px;font-weight:900;line-height:1}
-.bcs{color:#3b1fa8;font-size:9.5px;font-weight:700}
-.legal{background:#f5f5f5;padding:8px 18px;font-size:9px;color:#777;line-height:1.6;border-top:1px solid #e8e8e8}
-/* plan cards */
-.plan-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:18px;background:#fff;border-top:1px solid #e5e7eb}
-.plan-card{border:2px solid #e5e7eb;border-radius:10px;padding:14px;background:#fff}
+.bct{flex:1;font-size:10px;color:#222;font-weight:600;line-height:1.4}
+.bci{width:36px;height:48px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px}
+.bcn{color:#3b1fa8;font-size:24px;font-weight:900;line-height:1}
+.bcs{color:#3b1fa8;font-size:9px;font-weight:700}
+.legal{background:#f5f5f5;padding:7px 18px;font-size:8.5px;color:#777;line-height:1.6;border-top:1px solid #e8e8e8}
+.plan-row{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:16px;background:#fff;border-top:1px solid #e5e7eb}
+.plan-card{border:2px solid #e5e7eb;border-radius:10px;padding:12px;background:#fff}
 .plan-card.feat{border-color:#6d28d9;background:#faf5ff}
-.pc-tag{display:inline-block;background:#6d28d9;color:#fff;font-size:8.5px;font-weight:800;padding:2px 7px;border-radius:3px;margin-bottom:5px}
-.pc-spd{font-size:10px;color:#666;margin-bottom:3px}
-.pc-name{font-size:12px;font-weight:800;color:#111;margin-bottom:5px}
-.pc-price{font-size:20px;font-weight:900;color:#2d1a8a}
-.pc-sub{font-size:9px;color:#666}
-.pc-feat{margin-top:8px;display:flex;flex-direction:column;gap:3px}
-.pc-feat span{font-size:9px;color:#444;display:flex;align-items:center;gap:4px}
+.pc-tag{display:inline-block;background:#6d28d9;color:#fff;font-size:8px;font-weight:800;padding:2px 6px;border-radius:3px;margin-bottom:4px}
+.pc-spd{font-size:9.5px;color:#666;margin-bottom:2px}
+.pc-name{font-size:11px;font-weight:800;color:#111;margin-bottom:4px}
+.pc-price{font-size:18px;font-weight:900;color:#2d1a8a}
+.pc-sub{font-size:8.5px;color:#666}
+.pc-feat{margin-top:7px;display:flex;flex-direction:column;gap:3px}
+.pc-feat span{font-size:8.5px;color:#444;display:flex;align-items:center;gap:3px}
 .pc-feat span::before{content:'✓';color:#6d28d9;font-weight:800}
-.pc-cta{display:block;margin-top:10px;text-align:center;background:#111;color:#fff;font-size:9.5px;font-weight:700;padding:6px;border-radius:5px}
-/* comparison table */
-.comp-table{background:#fff;border-top:1px solid #e5e7eb;padding:18px}
-.ct-head{font-size:13px;font-weight:800;color:#111;margin-bottom:12px}
-.ct-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;font-size:10px}
+.pc-cta{display:block;margin-top:8px;text-align:center;background:#111;color:#fff;font-size:9px;font-weight:700;padding:5px;border-radius:5px}
+.comp-table{background:#fff;border-top:1px solid #e5e7eb;padding:16px}
+.ct-head{font-size:12px;font-weight:800;color:#111;margin-bottom:10px}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;font-size:9.5px}
 .ct-col{display:flex;flex-direction:column}
-.ct-hdr{padding:8px 10px;font-weight:800;background:#f8f9fb;border-bottom:1px solid #e5e7eb;font-size:10px}
+.ct-hdr{padding:7px 9px;font-weight:800;background:#f8f9fb;border-bottom:1px solid #e5e7eb;font-size:9.5px}
 .ct-hdr.hilite{background:#f0eeff;color:#6d28d9}
-.ct-row{padding:7px 10px;border-bottom:1px solid #f0f0f0;font-size:9.5px;color:#444;display:flex;align-items:center;gap:4px}
+.ct-row{padding:6px 9px;border-bottom:1px solid #f0f0f0;font-size:9px;color:#444;display:flex;align-items:center;gap:3px}
 .ct-row:last-child{border-bottom:none}
-.ct-row.y::before{content:'✓';color:#6d28d9;font-weight:900;font-size:10px}
+.ct-row.y::before{content:'✓';color:#6d28d9;font-weight:900;font-size:9.5px}
 .ct-row.n{color:#aaa}
 .ct-row.n::before{content:'—';color:#ccc}
-/* faq accordion */
-.faq-section{background:#f8f9fb;border-top:1px solid #e5e7eb;padding:18px}
-.faq-head{font-size:13px;font-weight:800;color:#111;margin-bottom:12px}
-.faq-item{background:#fff;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:6px;overflow:hidden}
-.faq-q{padding:10px 14px;font-size:10.5px;font-weight:700;color:#111;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.faq-q::after{content:'+';font-size:14px;color:#6d28d9;font-weight:700}
-.faq-a{padding:0 14px 10px;font-size:10px;color:#555;line-height:1.6}
-/* hover tiles */
+.faq-section{background:#f8f9fb;border-top:1px solid #e5e7eb;padding:16px}
+.faq-head{font-size:12px;font-weight:800;color:#111;margin-bottom:10px}
+.faq-item{background:#fff;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:5px;overflow:hidden}
+.faq-q{padding:9px 12px;font-size:10px;font-weight:700;color:#111;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.faq-q::after{content:'+';font-size:13px;color:#6d28d9;font-weight:700}
+.faq-a{padding:0 12px 9px;font-size:9.5px;color:#555;line-height:1.6}
 .htiles{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #e5e7eb;background:#fff}
-.htile{padding:18px 10px 14px;border-right:1px solid #e5e7eb;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer}
+.htile{padding:14px 8px 12px;border-right:1px solid #e5e7eb;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}
 .htile:last-child{border-right:none}
-.hti{width:100%;height:58px;background:linear-gradient(135deg,#e8edf5,#d0d8e8);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:20px}
-.htl{font-size:10px;font-weight:700;color:#222;text-align:center}
-/* savings banner */
-.sav{background:linear-gradient(90deg,#1a0f3a 0%,#2d1a8a 100%);padding:24px 36px;display:flex;justify-content:space-between;align-items:center}
-.savt h3{font-size:16px;font-weight:900;color:#fff;margin-bottom:5px}
-.savt p{font-size:10px;color:rgba(255,255,255,.6);max-width:360px;line-height:1.5}
-.savc{background:#fff;color:#2d1a8a;padding:9px 18px;border-radius:6px;font-size:11px;font-weight:800;white-space:nowrap}
-/* carousel */
-.car-sec{background:#fff;padding:20px 18px;border-top:1px solid #e5e7eb}
-.car-h{font-size:13px;font-weight:800;color:#111;margin-bottom:12px}
-.car-tr{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.hti{width:100%;height:52px;background:linear-gradient(135deg,#e8edf5,#d0d8e8);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.htl{font-size:9.5px;font-weight:700;color:#222;text-align:center}
+.sav{background:linear-gradient(90deg,#1a0f3a 0%,#2d1a8a 100%);padding:20px 32px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.savt h3{font-size:14px;font-weight:900;color:#fff;margin-bottom:4px}
+.savt p{font-size:9.5px;color:rgba(255,255,255,.6);max-width:340px;line-height:1.5}
+.savc{background:#fff;color:#2d1a8a;padding:8px 16px;border-radius:6px;font-size:10.5px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.car-sec{background:#fff;padding:18px 18px;border-top:1px solid #e5e7eb}
+.car-h{font-size:12px;font-weight:800;color:#111;margin-bottom:10px}
+.car-tr{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
 .car-card{background:#f8f9fb;border-radius:10px;overflow:hidden;border:1px solid #e5e7eb}
-.cimg{height:72px;display:flex;align-items:center;justify-content:center;font-size:26px}
-.cbody{padding:9px 11px 11px}
-.ctit{font-size:10px;font-weight:800;color:#111;margin-bottom:3px}
-.cpr{font-size:17px;font-weight:900;color:#2d1a8a}
-.cper{font-size:9px;color:#666}
-.ccta{display:inline-block;margin-top:7px;background:#2d1a8a;color:#fff;font-size:9.5px;font-weight:700;padding:4px 10px;border-radius:4px}
-/* icon stack */
-.ist{background:#f8f9fb;padding:20px 18px;border-top:1px solid #e5e7eb}
-.isth{font-size:13px;font-weight:800;color:#111;margin-bottom:12px}
-.istg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.isi{display:flex;gap:9px;align-items:flex-start}
-.isic{width:34px;height:34px;background:#ede9fe;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
-.istx strong{font-size:10px;font-weight:800;color:#111;display:block;margin-bottom:2px}
-.istx span{font-size:9px;color:#666;line-height:1.4}
-/* tabs */
+.cimg{height:66px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.cbody{padding:8px 10px 10px}
+.ctit{font-size:9.5px;font-weight:800;color:#111;margin-bottom:3px}
+.cpr{font-size:16px;font-weight:900;color:#2d1a8a}
+.cper{font-size:8.5px;color:#666}
+.ccta{display:inline-block;margin-top:6px;background:#2d1a8a;color:#fff;font-size:9px;font-weight:700;padding:4px 9px;border-radius:4px}
+.ist{background:#f8f9fb;padding:18px;border-top:1px solid #e5e7eb}
+.isth{font-size:12px;font-weight:800;color:#111;margin-bottom:10px}
+.istg{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.isi{display:flex;gap:8px;align-items:flex-start}
+.isic{width:32px;height:32px;background:#ede9fe;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.istx strong{font-size:9.5px;font-weight:800;color:#111;display:block;margin-bottom:2px}
+.istx span{font-size:8.5px;color:#666;line-height:1.4}
 .tabs-s{background:#fff;border-top:1px solid #e5e7eb}
-.tabs-h{display:flex;border-bottom:2px solid #e5e7eb;padding:0 18px}
-.tb2{padding:10px 14px;font-size:10.5px;font-weight:700;color:#888;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tabs-h{display:flex;border-bottom:2px solid #e5e7eb;padding:0 18px;overflow-x:auto}
+.tabs-h::-webkit-scrollbar{display:none}
+.tb2{padding:9px 13px;font-size:10px;font-weight:700;color:#888;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap}
 .tb2.at{color:#2d1a8a;border-bottom-color:#2d1a8a}
-.tabs-b{padding:16px 18px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-/* mobile plan cards */
-.mob-plans{background:#fff;padding:18px;border-top:1px solid #e5e7eb}
-.mob-h{font-size:13px;font-weight:800;color:#111;margin-bottom:12px}
-.mob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.mob-card{border:2px solid #e5e7eb;border-radius:12px;padding:14px;background:#fff}
+.tabs-b{padding:14px 18px;display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.mob-plans{background:#fff;padding:16px;border-top:1px solid #e5e7eb}
+.mob-h{font-size:12px;font-weight:800;color:#111;margin-bottom:10px}
+.mob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.mob-card{border:2px solid #e5e7eb;border-radius:12px;padding:12px;background:#fff}
 .mob-card.feat{border-color:#6d28d9}
-.mob-badge{display:inline-block;background:#6d28d9;color:#fff;font-size:8px;font-weight:800;padding:2px 7px;border-radius:3px;margin-bottom:6px}
-.mob-name{font-size:13px;font-weight:900;color:#111;margin-bottom:3px}
-.mob-tagline{font-size:9.5px;color:#666;margin-bottom:10px}
-.mob-price{font-size:24px;font-weight:900;color:#2d1a8a;margin-bottom:10px}
-.mob-sub2{font-size:9px;color:#666}
-.mob-feats{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
-.mob-feats span{font-size:9.5px;color:#333;display:flex;align-items:center;gap:5px}
+.mob-badge{display:inline-block;background:#6d28d9;color:#fff;font-size:7.5px;font-weight:800;padding:2px 6px;border-radius:3px;margin-bottom:5px}
+.mob-name{font-size:12px;font-weight:900;color:#111;margin-bottom:2px}
+.mob-tagline{font-size:9px;color:#666;margin-bottom:8px}
+.mob-price{font-size:22px;font-weight:900;color:#2d1a8a;margin-bottom:8px}
+.mob-sub2{font-size:8.5px;color:#666}
+.mob-feats{display:flex;flex-direction:column;gap:3px;margin-bottom:8px}
+.mob-feats span{font-size:9px;color:#333;display:flex;align-items:center;gap:4px}
 .mob-feats span::before{content:'✓';color:#6d28d9;font-weight:900}
-.mob-cta{display:block;text-align:center;background:#111;color:#fff;font-size:10px;font-weight:700;padding:7px;border-radius:6px}
-/* device grid */
-.dev-sec{background:#fff;padding:20px 18px;border-top:1px solid #e5e7eb}
-.dev-h{font-size:13px;font-weight:800;color:#111;margin-bottom:4px}
-.dev-sub{font-size:10px;color:#666;margin-bottom:12px}
-.dev-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.mob-cta{display:block;text-align:center;background:#111;color:#fff;font-size:9.5px;font-weight:700;padding:6px;border-radius:6px}
+.dev-sec{background:#fff;padding:18px;border-top:1px solid #e5e7eb}
+.dev-h{font-size:12px;font-weight:800;color:#111;margin-bottom:3px}
+.dev-sub{font-size:9.5px;color:#666;margin-bottom:10px}
+.dev-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .dev-card{border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;background:#fff}
-.dc-img{background:linear-gradient(135deg,#f0f0f0,#e0e0e0);height:76px;display:flex;align-items:center;justify-content:center;font-size:30px}
-.dc-b{padding:9px}
-.dc-badge{display:inline-block;background:#2d1a8a;color:#fff;font-size:8.5px;font-weight:700;padding:2px 6px;border-radius:3px;margin-bottom:4px}
-.dc-name{font-size:10.5px;font-weight:800;color:#111;margin-bottom:2px;line-height:1.3}
-.dc-price{font-size:15px;font-weight:900;color:#2d1a8a}
-.dc-sub{font-size:9px;color:#666}
-.dc-cta{display:block;margin-top:7px;text-align:center;background:#111;color:#fff;font-size:9.5px;font-weight:700;padding:5px;border-radius:5px}
-/* security 2up */
+.dc-img{background:linear-gradient(135deg,#f0f0f0,#e0e0e0);height:72px;display:flex;align-items:center;justify-content:center;font-size:28px}
+.dc-b{padding:8px}
+.dc-badge{display:inline-block;background:#2d1a8a;color:#fff;font-size:8px;font-weight:700;padding:2px 6px;border-radius:3px;margin-bottom:3px}
+.dc-name{font-size:10px;font-weight:800;color:#111;margin-bottom:2px;line-height:1.3}
+.dc-price{font-size:14px;font-weight:900;color:#2d1a8a}
+.dc-sub{font-size:8.5px;color:#666}
+.dc-cta{display:block;margin-top:6px;text-align:center;background:#111;color:#fff;font-size:9px;font-weight:700;padding:5px;border-radius:5px}
 .sec2up{display:grid;grid-template-columns:1fr 1fr;background:#fff;border-top:1px solid #e5e7eb}
-.s2c{padding:20px 18px;border-right:1px solid #e5e7eb}
+.s2c{padding:18px;border-right:1px solid #e5e7eb}
 .s2c:last-child{border-right:none}
-.s2img{width:100%;height:80px;border-radius:8px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;font-size:32px;background:linear-gradient(135deg,#e8edf5,#d0d8e8)}
-.s2name{font-size:11px;font-weight:800;color:#111;margin-bottom:3px}
-.s2desc{font-size:9.5px;color:#555;margin-bottom:8px;line-height:1.5}
-.s2price{font-size:20px;font-weight:900;color:#2d1a8a;margin-bottom:8px}
-.s2cta{display:inline-block;background:#111;color:#fff;font-size:9.5px;font-weight:700;padding:5px 12px;border-radius:5px}
-/* streamsaver */
-.stream-banner{background:linear-gradient(120deg,#0f172a,#1e1b4b);padding:22px 36px;display:flex;justify-content:space-between;align-items:center}
-.st-logos{display:flex;gap:10px;align-items:center}
-.st-logo{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
-.st-text h3{font-size:15px;font-weight:900;color:#fff;margin-bottom:4px}
-.st-text p{font-size:9.5px;color:rgba(255,255,255,.6);max-width:300px}
-.st-cta{background:linear-gradient(135deg,#4f7ef8,#7c3aed);color:#fff;padding:8px 16px;border-radius:6px;font-size:10.5px;font-weight:800;white-space:nowrap}
-/* address form */
-.addr-block{background:linear-gradient(135deg,#f5f3ff,#ede9fe);padding:20px 18px;border-top:1px solid #e5e7eb;text-align:center}
-.addr-h{font-size:14px;font-weight:800;color:#2d1a8a;margin-bottom:6px}
-.addr-p{font-size:10px;color:#555;margin-bottom:12px}
-.addr-form{display:flex;justify-content:center;gap:8px}
-.addr-input{background:#fff;border:1.5px solid #d1d5db;border-radius:7px;padding:9px 14px;font-size:11px;width:260px;color:#333}
-.addr-btn{background:#111;color:#fff;border:none;padding:9px 18px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer}
-/* award banner */
-.award-bar{background:#fff;border-top:1px solid #e5e7eb;padding:14px 18px;display:flex;align-items:center;gap:16px}
-.aw-icon{width:42px;height:42px;background:linear-gradient(135deg,#fef9c3,#fde68a);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.aw-text strong{font-size:11px;font-weight:800;color:#111;display:block}
-.aw-text span{font-size:9.5px;color:#666}
-/* footer */
-.footer{background:#111;padding:22px 18px 14px}
-.fcols{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:16px}
-.fct{font-size:9.5px;font-weight:800;color:#fff;margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px}
-.fcl{font-size:9.5px;color:#555;display:block;margin-bottom:4px}
-.fbot{border-top:1px solid #222;padding-top:10px;display:flex;justify-content:space-between;align-items:center}
-.flogo{font-size:15px;font-weight:900;color:#fff}
-.fleg{font-size:8.5px;color:#444}
+.s2img{width:100%;height:76px;border-radius:8px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;font-size:30px;background:linear-gradient(135deg,#e8edf5,#d0d8e8)}
+.s2name{font-size:10.5px;font-weight:800;color:#111;margin-bottom:2px}
+.s2desc{font-size:9px;color:#555;margin-bottom:7px;line-height:1.5}
+.s2price{font-size:18px;font-weight:900;color:#2d1a8a;margin-bottom:7px}
+.s2cta{display:inline-block;background:#111;color:#fff;font-size:9px;font-weight:700;padding:5px 11px;border-radius:5px}
+.stream-banner{background:linear-gradient(120deg,#0f172a,#1e1b4b);padding:20px 32px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.st-logos{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.st-logo{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.st-text h3{font-size:13px;font-weight:900;color:#fff;margin-bottom:3px}
+.st-text p{font-size:9px;color:rgba(255,255,255,.6);max-width:260px}
+.st-cta{background:linear-gradient(135deg,#4f7ef8,#7c3aed);color:#fff;padding:7px 14px;border-radius:6px;font-size:10px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.addr-block{background:linear-gradient(135deg,#f5f3ff,#ede9fe);padding:18px;border-top:1px solid #e5e7eb;text-align:center}
+.addr-h{font-size:13px;font-weight:800;color:#2d1a8a;margin-bottom:5px}
+.addr-p{font-size:9.5px;color:#555;margin-bottom:10px}
+.addr-form{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}
+.addr-input{background:#fff;border:1.5px solid #d1d5db;border-radius:7px;padding:8px 12px;font-size:10.5px;width:240px;color:#333}
+.addr-btn{background:#111;color:#fff;border:none;padding:8px 16px;border-radius:7px;font-size:10.5px;font-weight:700;cursor:pointer}
+.award-bar{background:#fff;border-top:1px solid #e5e7eb;padding:12px 18px;display:flex;align-items:center;gap:14px}
+.aw-icon{width:38px;height:38px;background:linear-gradient(135deg,#fef9c3,#fde68a);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.aw-text strong{font-size:10.5px;font-weight:800;color:#111;display:block}
+.aw-text span{font-size:9px;color:#666}
+.footer{background:#111;padding:20px 18px 14px}
+.fcols{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:14px}
+.fct{font-size:9px;font-weight:800;color:#fff;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.fcl{font-size:9px;color:#555;display:block;margin-bottom:3px}
+.fbot{border-top:1px solid #222;padding-top:9px;display:flex;justify-content:space-between;align-items:center}
+.flogo{font-size:14px;font-weight:900;color:#fff}
+.fleg{font-size:8px;color:#444}
 
 /* ── DETAIL PANEL ── */
-.panel{width:300px;flex-shrink:0;background:var(--surf);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
-.ph{padding:14px 16px 10px;border-bottom:1px solid var(--border);flex-shrink:0}
-.ph h2{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px}
-#sel-disp{background:var(--surf2);border:1px solid var(--border);border-radius:7px;padding:9px 12px;font-size:10.5px;color:var(--muted);text-align:center;line-height:1.5}
-.leg-list{overflow-y:auto;flex:1;padding:8px}
-
-/* category group */
-.cat-group{margin-bottom:4px}
-.cat-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 10px 4px;display:flex;align-items:center;gap:6px}
-.cat-label::before{content:'';flex:1;height:1px;background:var(--border)}
-.cat-label::after{content:'';flex:1;height:1px;background:var(--border)}
-
-.li{border-radius:7px;padding:8px 10px;margin-bottom:3px;cursor:pointer;border:1.5px solid transparent;transition:all .16s}
+.panel{width:var(--panel-w);flex-shrink:0;background:var(--surf);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;transition:transform .25s,width .25s}
+.ph{padding:12px 14px 10px;border-bottom:1px solid var(--border);flex-shrink:0}
+.ph-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ph h2{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px}
+.panel-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:0 2px;display:none}
+#sel-disp{background:var(--surf2);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:10px;color:var(--muted);text-align:center;line-height:1.5}
+.leg-list{overflow-y:auto;flex:1;padding:6px 8px}
+.cat-group{margin-bottom:3px}
+.cat-label{font-size:8.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:7px 8px 3px;display:flex;align-items:center;gap:5px}
+.cat-label::before,.cat-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.li{border-radius:6px;padding:7px 9px;margin-bottom:2px;cursor:pointer;border:1.5px solid transparent;transition:all .16s}
 .li:hover{background:var(--surf2);border-color:var(--border)}
 .li.active{border-color:var(--accent);background:rgba(79,126,248,.06)}
-.lr{display:flex;align-items:center;gap:7px}
-.lc{width:9px;height:9px;border-radius:3px;flex-shrink:0}
-.ln{font-size:11px;font-weight:700;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.badge{font-size:8.5px;font-weight:800;padding:2px 6px;border-radius:20px;white-space:nowrap}
+.lr{display:flex;align-items:center;gap:6px}
+.lc{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.ln{font-size:10.5px;font-weight:700;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{font-size:8px;font-weight:800;padding:2px 5px;border-radius:20px;white-space:nowrap}
 .bC{background:rgba(239,68,68,.18);color:#f87171;border:1px solid rgba(239,68,68,.3)}
 .bE{background:rgba(245,158,11,.18);color:#fbbf24;border:1px solid rgba(245,158,11,.3)}
 .bK{background:rgba(16,185,129,.18);color:#34d399;border:1px solid rgba(16,185,129,.3)}
 .bH{background:rgba(239,68,68,.14);color:#f87171;border:1px solid rgba(239,68,68,.24)}
 .bM{background:rgba(245,158,11,.14);color:#fbbf24;border:1px solid rgba(245,158,11,.24)}
 .bL{background:rgba(16,185,129,.14);color:#34d399;border:1px solid rgba(16,185,129,.24)}
-
-.lmeta{margin-top:8px;display:none}
+.lmeta{margin-top:7px;display:none}
 .li.active .lmeta{display:block}
-.mrow{display:flex;gap:5px;margin-bottom:4px;align-items:flex-start}
-.ml{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;width:34px;flex-shrink:0;padding-top:1px}
-.mv{font-size:10px;color:var(--muted2);flex:1;line-height:1.4}
+.mrow{display:flex;gap:5px;margin-bottom:3px;align-items:flex-start}
+.ml{font-size:8.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;width:32px;flex-shrink:0;padding-top:1px}
+.mv{font-size:9.5px;color:var(--muted2);flex:1;line-height:1.4}
 .mv strong{color:var(--text)}
-.wbox{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.22);border-radius:5px;padding:7px 9px;font-size:9.5px;color:#fbbf24;line-height:1.5;margin-top:6px}
-.ibox{background:rgba(79,126,248,.07);border:1px solid rgba(79,126,248,.22);border-radius:5px;padding:7px 9px;font-size:9.5px;color:#93c5fd;line-height:1.5;margin-top:5px}
-.pages-used{font-size:8.5px;color:var(--muted);margin-top:5px;line-height:1.5}
+.wbox{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.22);border-radius:5px;padding:6px 8px;font-size:9px;color:#fbbf24;line-height:1.5;margin-top:5px}
+.ibox{background:rgba(79,126,248,.07);border:1px solid rgba(79,126,248,.22);border-radius:5px;padding:6px 8px;font-size:9px;color:#93c5fd;line-height:1.5;margin-top:4px}
+.pages-used{font-size:8px;color:var(--muted);margin-top:4px;line-height:1.5}
 .pages-used strong{color:var(--muted2)}
-
-/* summary bar */
-.sbar{background:var(--surf);border-top:1px solid var(--border);padding:9px 14px;flex-shrink:0;display:flex;gap:0;align-items:center}
+.sbar{background:var(--surf);border-top:1px solid var(--border);padding:8px 12px;flex-shrink:0;display:flex;gap:0;align-items:center}
 .ss{text-align:center;flex:1}
-.ss .sn{font-size:17px;font-weight:900}
-.ss .sl{font-size:8.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
-.sdiv{width:1px;height:28px;background:var(--border)}
+.ss .sn{font-size:15px;font-weight:900}
+.ss .sl{font-size:8px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+.sdiv{width:1px;height:26px;background:var(--border)}
+
+/* panel overlay backdrop (mobile) */
+.panel-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199}
+
+/* ── RESPONSIVE BREAKPOINTS ── */
+
+/* Large desktop: show pills in topbar */
+@media(max-width:1100px){
+  .pills{display:none}
+  .tb-sub{display:none}
+}
+
+/* Medium: collapse panel to overlay */
+@media(max-width:900px){
+  :root{--panel-w:280px}
+  .panel{position:fixed;right:0;top:0;bottom:0;z-index:200;transform:translateX(100%);border-left:1px solid var(--border);box-shadow:-8px 0 40px rgba(0,0,0,.5)}
+  .panel.open{transform:translateX(0)}
+  .panel-toggle{display:flex;align-items:center;justify-content:center}
+  .panel-close{display:block}
+  .panel-backdrop{display:block}
+  .panel-backdrop.visible{display:block}
+  .canvas{margin-right:0 !important}
+  .tb-title{font-size:11px}
+}
+
+/* Small tablet */
+@media(max-width:700px){
+  .tb-title{font-size:10.5px}
+  .logo{width:26px;height:26px;font-size:11px}
+}
+
+/* Mobile */
+@media(max-width:480px){
+  :root{--topbar-h:46px;--panel-w:100vw}
+  .topbar{padding:0 10px;gap:8px}
+  .tb-title{font-size:10px}
+  .canvas{padding:10px}
+  .pv-label{font-size:9px;letter-spacing:1px}
+  .pagetabs{padding:4px 8px}
+  .ptab{padding:4px 10px;font-size:10px}
+}
 </style>
 </head>
 <body>
+
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="tb-left">
     <div class="logo">A</div>
-    <div>
-      <div class="tb-title">Xfinity.com → AEM Cloud · Complete Component Library</div>
-      <div class="tb-sub">Sitecore JSS Headless → Adobe Experience Manager Cloud Service · All Pages Analysed</div>
+    <div class="tb-titles">
+      <div class="tb-title">Xfinity.com → AEM Cloud · Component Library</div>
+      <div class="tb-sub">Sitecore JSS Headless → Adobe Experience Manager Cloud Service</div>
     </div>
   </div>
-  <div class="tabs" id="page-tabs">
-    <button class="tab active" onclick="switchPage(0)">Overview</button>
-    <button class="tab" onclick="switchPage(1)">Internet</button>
-    <button class="tab" onclick="switchPage(2)">Mobile</button>
-    <button class="tab" onclick="switchPage(3)">TV &amp; Streaming</button>
-    <button class="tab" onclick="switchPage(4)">Home Security</button>
-    <button class="tab" onclick="switchPage(5)">Deals</button>
+  <div class="tb-right">
+    <div class="pills">
+      <div class="pill"><div class="dot dH"></div><strong>6</strong>Custom</div>
+      <div class="pill"><div class="dot dM"></div><strong>5</strong>Core Ext</div>
+      <div class="pill"><div class="dot dL"></div><strong>4</strong>AEM Core</div>
+    </div>
+    <button class="panel-toggle" onclick="togglePanel()" title="Component Registry">☰ Registry</button>
   </div>
-  <div class="pills">
-    <div class="pill"><div class="dot dH"></div><strong>6</strong>Custom</div>
-    <div class="pill"><div class="dot dM"></div><strong>5</strong>Core Ext</div>
-    <div class="pill"><div class="dot dL"></div><strong>4</strong>AEM Core</div>
+</div>
+
+<!-- PAGE TABS -->
+<div class="pagetabs-wrap">
+  <div class="pagetabs" id="page-tabs">
+    <button class="ptab active" onclick="switchPage(0)">Overview</button>
+    <button class="ptab" onclick="switchPage(1)">Internet</button>
+    <button class="ptab" onclick="switchPage(2)">Mobile</button>
+    <button class="ptab" onclick="switchPage(3)">TV &amp; Streaming</button>
+    <button class="ptab" onclick="switchPage(4)">Home Security</button>
+    <button class="ptab" onclick="switchPage(5)">Deals</button>
   </div>
 </div>
 
 <div class="main">
+
+<!-- CANVAS -->
 <div class="canvas" id="canvas">
 
-  <!-- ══ PAGE 0: OVERVIEW ══ -->
+  <!-- PAGE 0: OVERVIEW -->
   <div class="page-view active" id="pv-0">
-    <div class="pv-label">xfinity.com/overview — Above the Fold</div>
-    <div class="browser"><div class="bbar"><div class="bdots"><span class="br"></span><span class="by"></span><span class="bg"></span></div><div class="burl">🔒 xfinity.com/overview</div></div>
-    <div class="mockup" id="mk-0">
-      <div class="nav"><div class="nb">xfinity<div class="nbw"><span>🇺🇸 Proud Partner</span><span>of Team USA</span></div></div><div class="nl"><span>Internet</span><span>Mobile</span><span>TV &amp; Streaming</span><span>Home Solutions</span><span>Home Phone</span><span>Build Your Plan</span><span>Membership Benefits</span></div><div class="na"><span>🔍</span><span>📍</span><span>📞</span><span>🛒</span><span class="nsi">Sign In</span></div></div>
-      <div class="geo">Shopping from <strong>Herndon</strong> &nbsp;<a href="#">Change</a></div>
-      <div class="hero"><div class="ht"><div class="hey">Gold Medal Celebration</div><div class="hh">Our best price on Gig WiFi for 5 years — guaranteed</div><div class="hb">No contract, no commitment. Watch Team USA during The Winter Olympics.</div><div class="hp"><span class="amt">$50</span><br><span class="per">/mo for 5 years</span></div><div class="hctas"><button class="btnp">Shop Internet</button><span class="btnl">Pricing &amp; other info</span></div></div><div class="hv"><div class="hib"><div class="hath"><div class="han">Jordan Stolz</div><div class="hab">U.S. Olympian</div></div></div></div></div>
-      <div class="bento"><div class="bc"><div class="bct">Unlimited mobile line on us for 1 yr + no activation fee</div><div class="bci">📱</div></div><div class="bc"><div class="bct">No contract. Cancel anytime.<br><span class="bcn">5</span><br><span class="bcs">year price guarantee</span></div></div><div class="bc"><div class="bct">2 years of Peacock Premium, on us</div><div class="bci">🦚</div></div><div class="bc"><div class="bct">WiFi equipment &amp; unlimited data included</div><div class="bci">📡</div></div></div>
-      <div class="htiles"><div class="htile"><div class="hti">🌐</div><div class="htl">Internet</div></div><div class="htile"><div class="hti">📱</div><div class="htl">Mobile</div></div><div class="htile"><div class="hti">📺</div><div class="htl">TV &amp; Streaming</div></div><div class="htile"><div class="hti">🔒</div><div class="htl">Home Security</div></div><div class="htile" style="border-right:none"><div class="hti">🛠️</div><div class="htl">Build Your Plan</div></div></div>
-      <div class="sav"><div class="savt"><h3>Cut your bill in half when you switch</h3><p>See how your savings stack up with Xfinity in your first year when you compare competitor plans.</p></div><div class="savc">See how much you can save</div></div>
-      <div class="car-sec"><div class="car-h">Save on Apple devices</div><div class="car-tr"><div class="car-card"><div class="cimg" style="background:linear-gradient(135deg,#f0f0f0,#ddd)">📱</div><div class="cbody"><div class="ctit">Get iPhone 17 Pro on us</div><div class="cpr">$0<span class="cper">/mo</span></div><div class="ccta">Shop Apple</div></div></div><div class="car-card"><div class="cimg" style="background:linear-gradient(135deg,#fff0f0,#fdd)">⌚</div><div class="cbody"><div class="ctit">Get Apple Watch SE 3 on us</div><div class="cpr">$0<span class="cper">/mo</span></div><div class="ccta">Explore benefits</div></div></div><div class="car-card"><div class="cimg" style="background:linear-gradient(135deg,#f0f5ff,#dde8ff)">💻</div><div class="cbody"><div class="ctit">$400 off iPhone, no trade-in</div><div class="cpr">$400<span class="cper"> off</span></div><div class="ccta">Shop Apple</div></div></div></div></div>
-      <div class="ist"><div class="isth">Get more with Xfinity</div><div class="istg"><div class="isi"><div class="isic">⚡</div><div class="istx"><strong>Gig Speed</strong><span>Fiber-powered internet up to 2Gbps</span></div></div><div class="isi"><div class="isic">🛡️</div><div class="istx"><strong>Advanced Security</strong><span>Always-on for all devices</span></div></div><div class="isi"><div class="isic">🦚</div><div class="istx"><strong>Peacock Premium</strong><span>2 years on us</span></div></div><div class="isi"><div class="isic">📡</div><div class="istx"><strong>WiFi Equipment</strong><span>Unlimited data included</span></div></div></div></div>
-      <div class="legal">Offer ends 2/22. New Xfinity Internet customers. Restrictions apply. Autopay w/ stored bank account and paperless billing req'd. Taxes and fees extra and subj. to change.</div>
-      <!-- OVERLAYS -->
-      <div class="anno" data-id="header" style="top:0;left:0;right:0;height:52px;background:rgba(99,102,241,.18);border:2px solid #6366f1" onclick="activate('header')"><div class="apill" style="background:#6366f1"><span class="n">①</span>XcHeader</div></div>
-      <div class="anno" data-id="geo" style="top:52px;left:0;right:0;height:28px;background:rgba(14,165,233,.18);border:2px solid #0ea5e9" onclick="activate('geo')"><div class="apill" style="background:#0ea5e9;color:#000"><span class="n">②</span>LocalizationSlim</div></div>
-      <div class="anno" data-id="hero" style="top:80px;left:0;right:0;height:272px;background:rgba(245,158,11,.13);border:2px solid #f59e0b" onclick="activate('hero')"><div class="apill" style="background:#f59e0b;color:#000"><span class="n">③</span>XjsFullImage</div></div>
-      <div class="anno" data-id="bento" style="top:351px;left:0;right:0;height:88px;background:rgba(16,185,129,.16);border:2px solid #10b981" onclick="activate('bento')"><div class="apill" style="background:#10b981;color:#000"><span class="n">④</span>JssBentoBox / BentoCard</div></div>
-      <div class="anno" data-id="hovertile" style="top:438px;left:0;right:0;height:109px;background:rgba(249,115,22,.14);border:2px solid #f97316" onclick="activate('hovertile')"><div class="apill" style="background:#f97316"><span class="n">⑤</span>JssBentoBox (Hover Tiles)</div></div>
-      <div class="anno" data-id="promobanner" style="top:546px;left:0;right:0;height:108px;background:rgba(139,92,246,.14);border:2px solid #8b5cf6" onclick="activate('promobanner')"><div class="apill" style="background:#8b5cf6"><span class="n">⑥</span>XjsFullImage (Promo Banner)</div></div>
-      <div class="anno" data-id="carousel" style="top:653px;left:0;right:0;height:212px;background:rgba(6,182,212,.13);border:2px solid #06b6d4" onclick="activate('carousel')"><div class="apill" style="background:#06b6d4;color:#000"><span class="n">⑦</span>JssCarousel</div></div>
-      <div class="anno" data-id="iconstack" style="top:884px;left:0;right:0;height:108px;background:rgba(168,85,247,.14);border:2px solid #a855f7" onclick="activate('iconstack')"><div class="apill" style="background:#a855f7"><span class="n">⑧</span>XjsIconStackBlock</div></div>
-      <div class="anno" data-id="legal" style="top:990px;left:0;right:0;height:36px;background:rgba(236,72,153,.15);border:2px solid #ec4899" onclick="activate('legal')"><div class="apill" style="background:#ec4899"><span class="n">⑨</span>Legal / Disclaimer</div></div>
+    <div class="pv-label">xfinity.com/overview</div>
+    <div class="browser-outer"><div class="browser">
+      <div class="bbar"><div class="bdots"><span class="br"></span><span class="by"></span><span class="bg"></span></div><div class="burl">🔒 xfinity.com/overview</div></div>
+      <div class="mockup-scaler"><div class="mockup" id="mk-0">
+        <div class="nav"><div class="nb">xfinity<div class="nbw"><span>🇺🇸 Proud Partner</span><span>of Team USA</span></div></div><div class="nl"><span>Internet</span><span>Mobile</span><span>TV &amp; Streaming</span><span>Home Solutions</span><span>Home Phone</span><span>Build Your Plan</span></div><div class="na"><span>🔍</span><span>📍</span><span>🛒</span><span class="nsi">Sign In</span></div></div>
+        <div class="geo">Shopping from <strong>Herndon</strong> &nbsp;<a href="#">Change</a></div>
+        <div class="hero"><div class="ht"><div class="hey">Gold Medal Celebration</div><div class="hh">Our best price on Gig WiFi for 5 years — guaranteed</div><div class="hb">No contract, no commitment. Watch Team USA during The Winter Olympics.</div><div class="hp"><span class="amt">$50</span><br><span class="per">/mo for 5 years</span></div><div class="hctas"><button class="btnp">Shop Internet</button><span class="btnl">Pricing &amp; other info</span></div></div><div class="hv"><div class="hib"><div class="hath"><div class="han">Jordan Stolz</div><div class="hab">U.S. Olympian</div></div></div></div></div>
+        <div class="bento"><div class="bc"><div class="bct">Unlimited mobile line on us for 1 yr</div><div class="bci">📱</div></div><div class="bc"><div class="bct">No contract. Cancel anytime.<br><span class="bcn">5</span><br><span class="bcs">year guarantee</span></div></div><div class="bc"><div class="bct">2 yrs Peacock Premium on us</div><div class="bci">🦚</div></div><div class="bc"><div class="bct">WiFi equipment &amp; unlimited data</div><div class="bci">📡</div></div></div>
+        <div class="htiles"><div class="htile"><div class="hti">🌐</div><div class="htl">Internet</div></div><div class="htile"><div class="hti">📱</div><div class="htl">Mobile</div></div><div class="htile"><div class="hti">📺</div><div class="htl">TV &amp; Streaming</div></div><div class="htile"><div class="hti">🔒</div><div class="htl">Home Security</div></div><div class="htile" style="border-right:none"><div class="hti">🛠️</div><div class="htl">Build Your Plan</div></div></div>
+        <div class="sav"><div class="savt"><h3>Cut your bill in half when you switch</h3><p>Compare competitor plans.</p></div><div class="savc">See savings</div></div>
+        <div class="car-sec"><div class="car-h">Save on Apple devices</div><div class="car-tr"><div class="car-card"><div class="cimg" style="background:linear-gradient(135deg,#f0f0f0,#ddd)">📱</div><div class="cbody"><div class="ctit">Get iPhone 17 Pro on us</div><div class="cpr">$0<span class="cper">/mo</span></div><div class="ccta">Shop Apple</div></div></div><div class="car-card"><div class="cimg" style="background:linear-gradient(135deg,#fff0f0,#fdd)">⌚</div><div class="cbody"><div class="ctit">Apple Watch SE 3 on us</div><div class="cpr">$0<span class="cper">/mo</span></div><div class="ccta">Explore</div></div></div><div class="car-card"><div class="cimg" style="background:linear-gradient(135deg,#f0f5ff,#dde8ff)">💻</div><div class="cbody"><div class="ctit">$400 off iPhone, no trade-in</div><div class="cpr">$400<span class="cper"> off</span></div><div class="ccta">Shop Apple</div></div></div></div></div>
+        <div class="ist"><div class="isth">Get more with Xfinity</div><div class="istg"><div class="isi"><div class="isic">⚡</div><div class="istx"><strong>Gig Speed</strong><span>Up to 2Gbps fiber</span></div></div><div class="isi"><div class="isic">🛡️</div><div class="istx"><strong>Advanced Security</strong><span>Always-on protection</span></div></div><div class="isi"><div class="isic">🦚</div><div class="istx"><strong>Peacock Premium</strong><span>2 years on us</span></div></div><div class="isi"><div class="isic">📡</div><div class="istx"><strong>WiFi Equipment</strong><span>Unlimited data included</span></div></div></div></div>
+        <div class="legal">Offer ends 2/22. New Xfinity Internet customers. Restrictions apply. Autopay w/ stored bank account and paperless billing req'd. Taxes and fees extra.</div>
+        <!-- OVERLAYS P0 -->
+        <div class="anno" data-id="header" style="top:0;left:0;right:0;height:52px;background:rgba(99,102,241,.18);border:2px solid #6366f1" onclick="activate('header')"><div class="apill" style="background:#6366f1"><span class="n">①</span>XcHeader</div></div>
+        <div class="anno" data-id="geo" style="top:52px;left:0;right:0;height:27px;background:rgba(14,165,233,.18);border:2px solid #0ea5e9" onclick="activate('geo')"><div class="apill" style="background:#0ea5e9;color:#000"><span class="n">②</span>LocalizationSlim</div></div>
+        <div class="anno" data-id="hero" style="top:79px;left:0;right:0;height:220px;background:rgba(245,158,11,.13);border:2px solid #f59e0b" onclick="activate('hero')"><div class="apill" style="background:#f59e0b;color:#000"><span class="n">③</span>XjsFullImage</div></div>
+        <div class="anno" data-id="bento" style="top:299px;left:0;right:0;height:86px;background:rgba(16,185,129,.16);border:2px solid #10b981" onclick="activate('bento')"><div class="apill" style="background:#10b981;color:#000"><span class="n">④</span>JssBentoBox / BentoCard</div></div>
+        <div class="anno" data-id="hovertile" style="top:385px;left:0;right:0;height:86px;background:rgba(249,115,22,.14);border:2px solid #f97316" onclick="activate('hovertile')"><div class="apill" style="background:#f97316"><span class="n">⑤</span>JssBentoBox (Hover Tiles)</div></div>
+        <div class="anno" data-id="promobanner" style="top:471px;left:0;right:0;height:88px;background:rgba(139,92,246,.14);border:2px solid #8b5cf6" onclick="activate('promobanner')"><div class="apill" style="background:#8b5cf6"><span class="n">⑥</span>XjsFullImage (Promo Banner)</div></div>
+        <div class="anno" data-id="carousel" style="top:559px;left:0;right:0;height:158px;background:rgba(6,182,212,.13);border:2px solid #06b6d4" onclick="activate('carousel')"><div class="apill" style="background:#06b6d4;color:#000"><span class="n">⑦</span>JssCarousel</div></div>
+        <div class="anno" data-id="iconstack" style="top:717px;left:0;right:0;height:84px;background:rgba(168,85,247,.14);border:2px solid #a855f7" onclick="activate('iconstack')"><div class="apill" style="background:#a855f7"><span class="n">⑧</span>XjsIconStackBlock</div></div>
+        <div class="anno" data-id="legal" style="top:801px;left:0;right:0;height:34px;background:rgba(236,72,153,.15);border:2px solid #ec4899" onclick="activate('legal')"><div class="apill" style="background:#ec4899"><span class="n">⑨</span>Legal / Disclaimer</div></div>
+      </div></div>
     </div></div>
   </div>
 
-  <!-- ══ PAGE 1: INTERNET ══ -->
+  <!-- PAGE 1: INTERNET -->
   <div class="page-view" id="pv-1">
     <div class="pv-label">xfinity.com/learn/internet-service</div>
-    <div class="browser"><div class="bbar"><div class="bdots"><span class="br"></span><span class="by"></span><span class="bg"></span></div><div class="burl">🔒 xfinity.com/learn/internet-service</div></div>
-    <div class="mockup" id="mk-1">
-      <div class="nav"><div class="nb">xfinity</div><div class="nl"><span>Internet</span><span>Mobile</span><span>TV &amp; Streaming</span><span>Home Solutions</span></div><div class="na"><span>🔍</span><span>🛒</span><span class="nsi">Sign In</span></div></div>
-      <div class="sub-nav"><div class="sn-item sna">Overview</div><div class="sn-item">Plans</div><div class="sn-item">Equipment</div><div class="sn-item">Deals</div></div>
-      <div class="geo">Shopping from <strong>Herndon</strong> &nbsp;<a href="#">Change</a></div>
-      <div class="hero"><div class="ht"><div class="hey">Gold Medal Celebration</div><div class="hh">Our best price on Gig WiFi for 5 years — guaranteed</div><div class="hb">No contract, no commitment. Most reliable, fiber-powered Gig WiFi.</div><div class="hp"><span class="amt">$50</span><br><span class="per">/mo for 5 years</span></div><div class="hctas"><button class="btnp">Shop Internet</button><span class="btnl">Pricing &amp; other info</span></div></div><div class="hv"><div class="hib"><div class="hath"><div class="han">Jordan Stolz</div><div class="hab">U.S. Olympian</div></div></div></div></div>
-      <div class="plan-row">
-        <div class="plan-card"><div class="pc-spd">300 Mbps</div><div class="pc-name">Connect</div><div class="pc-price">$40<span class="pc-sub">/mo for 5 yrs</span></div><div class="pc-feat"><span>5-Year Price Guarantee</span><span>WiFi equipment included</span><span>1 yr Unlimited Mobile</span></div><div class="pc-cta">Build your plan</div></div>
-        <div class="plan-card feat"><div class="pc-tag">Most Popular</div><div class="pc-spd">1 Gig</div><div class="pc-name">Gig Internet</div><div class="pc-price">$50<span class="pc-sub">/mo for 5 yrs</span></div><div class="pc-feat"><span>5-Year Price Guarantee</span><span>WiFi equipment included</span><span>2 yrs Peacock Premium</span><span>1 yr Unlimited Mobile</span></div><div class="pc-cta">Build your plan</div></div>
-        <div class="plan-card"><div class="pc-spd">1 Gig + TV</div><div class="pc-name">Gig + Sports &amp; News</div><div class="pc-price">$130<span class="pc-sub">/mo</span></div><div class="pc-feat"><span>50+ live channels</span><span>Peacock Premium</span><span>4K TV Box included</span><span>1 yr Unlimited Mobile</span></div><div class="pc-cta">Build your plan</div></div>
-      </div>
-      <div class="sav"><div class="savt"><h3>Cut your bill in half when you switch</h3><p>Compare competitor plans. Based on 1-year promotional pricing vs. T-Mobile, Verizon, and AT&T.</p></div><div class="savc">See how much you can save</div></div>
-      <div class="faq-section"><div class="faq-head">Frequently asked questions</div><div class="faq-item"><div class="faq-q">What is the Xfinity 5-Year Price Guarantee?</div><div class="faq-a">The Xfinity 5-Year Price Guarantee locks in your monthly home internet price for five years with no contract required.</div></div><div class="faq-item"><div class="faq-q">Is there a contract or early termination fee?</div><div class="faq-a">No, there is no annual contract or early termination fee. You can cancel any time without a penalty.</div></div><div class="faq-item"><div class="faq-q">What's included with Xfinity internet plans?</div><div class="faq-a">Reliable, fiber-powered home internet, unlimited data, Xfinity Gateway, Advanced Security, and parental control features.</div></div></div>
-      <div class="ist"><div class="isth">Get more with Xfinity Internet</div><div class="istg"><div class="isi"><div class="isic">⚡</div><div class="istx"><strong>Same-Day WiFi</strong><span>Pick up and self-install in 15 min</span></div></div><div class="isi"><div class="isic">🛡️</div><div class="istx"><strong>Advanced Security</strong><span>Always-on, no extra cost</span></div></div><div class="isi"><div class="isic">🦚</div><div class="istx"><strong>Peacock Premium</strong><span>2 years on us</span></div></div><div class="isi"><div class="isic">📡</div><div class="istx"><strong>99% Reliability</strong><span>Fiber-powered backbone</span></div></div></div></div>
-      <div class="legal">Offer ends 2/22. New Xfinity Internet customers. Restrictions apply. Autopay w/ stored bank account and paperless billing req'd. Taxes and fees extra.</div>
-      <!-- OVERLAYS -->
-      <div class="anno" data-id="header" style="top:0;left:0;right:0;height:52px;background:rgba(99,102,241,.18);border:2px solid #6366f1" onclick="activate('header')"><div class="apill" style="background:#6366f1"><span class="n">①</span>XcHeader</div></div>
-      <div class="anno" data-id="subnav" style="top:52px;left:0;right:0;height:34px;background:rgba(251,191,36,.16);border:2px solid #fbbf24" onclick="activate('subnav')"><div class="apill" style="background:#fbbf24;color:#000"><span class="n">②</span>SubNavigation</div></div>
-      <div class="anno" data-id="geo" style="top:86px;left:0;right:0;height:28px;background:rgba(14,165,233,.18);border:2px solid #0ea5e9" onclick="activate('geo')"><div class="apill" style="background:#0ea5e9;color:#000"><span class="n">③</span>LocalizationSlim</div></div>
-      <div class="anno" data-id="hero" style="top:114px;left:0;right:0;height:270px;background:rgba(245,158,11,.13);border:2px solid #f59e0b" onclick="activate('hero')"><div class="apill" style="background:#f59e0b;color:#000"><span class="n">④</span>XjsFullImage</div></div>
-      <div class="anno" data-id="plancards" style="top:384px;left:0;right:0;height:238px;background:rgba(239,68,68,.13);border:2px solid #ef4444" onclick="activate('plancards')"><div class="apill" style="background:#ef4444"><span class="n">⑤</span>PlanCard / PlanGrid</div></div>
-      <div class="anno" data-id="promobanner" style="top:624px;left:0;right:0;height:136px;background:rgba(139,92,246,.14);border:2px solid #8b5cf6" onclick="activate('promobanner')"><div class="apill" style="background:#8b5cf6"><span class="n">⑥</span>XjsFullImage (Promo Banner)</div></div>
-      <div class="anno" data-id="faq" style="top:758px;left:0;right:0;height:263px;background:rgba(16,185,129,.14);border:2px solid #10b981" onclick="activate('faq')"><div class="apill" style="background:#10b981;color:#000"><span class="n">⑦</span>FAQAccordion</div></div>
-      <div class="anno" data-id="iconstack" style="top:1021px;left:0;right:0;height:107px;background:rgba(168,85,247,.14);border:2px solid #a855f7" onclick="activate('iconstack')"><div class="apill" style="background:#a855f7"><span class="n">⑧</span>XjsIconStackBlock</div></div>
-      <div class="anno" data-id="legal" style="top:1126px;left:0;right:0;height:34px;background:rgba(236,72,153,.15);border:2px solid #ec4899" onclick="activate('legal')"><div class="apill" style="background:#ec4899"><span class="n">⑨</span>Legal / Disclaimer</div></div>
+    <div class="browser-outer"><div class="browser">
+      <div class="bbar"><div class="bdots"><span class="br"></span><span class="by"></span><span class="bg"></span></div><div class="burl">🔒 xfinity.com/learn/internet-service</div></div>
+      <div class="mockup-scaler"><div class="mockup" id="mk-1">
+        <div class="nav"><div class="nb">xfinity</div><div class="nl"><span>Internet</span><span>Mobile</span><span>TV &amp; Streaming</span><span>Home Solutions</span></div><div class="na"><span>🔍</span><span>🛒</span><span class="nsi">Sign In</span></div></div>
+        <div class="sub-nav"><div class="sn-item sna">Overview</div><div class="sn-item">Plans</div><div class="sn-item">Equipment</div><div class="sn-item">Deals</div></div>
+        <div class="geo">Shopping from <strong>Herndon</strong> &nbsp;<a href="#">Change</a></div>
+        <div class="hero"><div class="ht"><div class="hey">Gold Medal Celebration</div><div class="hh">Our best price on Gig WiFi for 5 years — guaranteed</div><div class="hb">No contract, no commitment. Most reliable, fiber-powered Gig WiFi.</div><div class="hp"><span class="amt">$50</span><br><span class="per">/mo for 5 years</span></div><div class="hctas"><button class="btnp">Shop Internet</button><span class="btnl">Pricing &amp; other info</span></div></div><div class="hv"><div class="hib"><div class="hath"><div class="han">Jordan Stolz</div><div class="hab">U.S. Olympian</div></div></div></div></div>
+        <div class="plan-row"><div class="plan-card"><div class="pc-spd">300 Mbps</div><div class="pc-name">Connect</div><div class="pc-price">$40<span class="pc-sub">/mo 5 yrs</span></div><div class="pc-feat"><span>5-Year Price Guarantee</span><span>WiFi equipment included</span><span>1 yr Unlimited Mobile</span></div><div class="pc-cta">Build your plan</div></div><div class="plan-card feat"><div class="pc-tag">Most Popular</div><div class="pc-spd">1 Gig</div><div class="pc-name">Gig Internet</div><div class="pc-price">$50<span class="pc-sub">/mo 5 yrs</span></div><div class="pc-feat"><span>5-Year Price Guarantee</span><span>WiFi equipment included</span><span>2 yrs Peacock Premium</span><span>1 yr Unlimited Mobile</span></div><div class="pc-cta">Build your plan</div></div><div class="plan-card"><div class="pc-spd">1 Gig + TV</div><div class="pc-name">Gig + Sports &amp; News</div><div class="pc-price">$130<span class="pc-sub">/mo</span></div><div class="pc-feat"><span>50+ live channels</span><span>Peacock Premium</span><span>4K TV Box included</span></div><div class="pc-cta">Build your plan</div></div></div>
+        <div class="sav"><div class="savt"><h3>Cut your bill in half</h3><p>Compare competitor plans. T-Mobile, Verizon, and AT&T.</p></div><div class="savc">See savings</div></div>
+        <div class="faq-section"><div class="faq-head">Frequently asked questions</div><div class="faq-item"><div class="faq-q">What is the Xfinity 5-Year Price Guarantee?</div><div class="faq-a">Locks in your monthly home internet price for five years with no contract required.</div></div><div class="faq-item"><div class="faq-q">Is there a contract or early termination fee?</div><div class="faq-a">No contract or early termination fee. Cancel any time without a penalty.</div></div><div class="faq-item"><div class="faq-q">What's included with Xfinity internet plans?</div><div class="faq-a">Reliable, fiber-powered home internet, unlimited data, Xfinity Gateway with Advanced Security.</div></div></div>
+        <div class="ist"><div class="isth">Get more with Xfinity Internet</div><div class="istg"><div class="isi"><div class="isic">⚡</div><div class="istx"><strong>Same-Day WiFi</strong><span>Self-install in 15 min</span></div></div><div class="isi"><div class="isic">🛡️</div><div class="istx"><strong>Advanced Security</strong><span>Always-on, no extra cost</span></div></div><div class="isi"><div class="isic">🦚</div><div class="istx"><strong>Peacock Premium</strong><span>2 years on us</span></div></div><div class="isi"><div class="isic">📡</div><div class="istx"><strong>99% Reliability</strong><span>Fiber-powered backbone</span></div></div></div></div>
+        <div class="legal">Offer ends 2/22. New Xfinity Internet customers. Restrictions apply. Autopay w/ stored bank account and paperless billing req'd. Taxes and fees extra.</div>
+        <!-- OVERLAYS P1 -->
+        <div class="anno" data-id="header" style="top:0;left:0;right:0;height:52px;background:rgba(99,102,241,.18);border:2px solid #6366f1" onclick="activate('header')"><div class="apill" style="background:#6366f1"><span class="n">①</span>XcHeader</div></div>
+        <div class="anno" data-id="subnav" style="top:52px;left:0;right:0;height:33px;background:rgba(251,191,36,.16);border:2px solid #fbbf24" onclick="activate('subnav')"><div class="apill" style="background:#fbbf24;color:#000"><span class="n">②</span>SubNavigation</div></div>
+        <div class="anno" data-id="geo" style="top:85px;left:0;right:0;height:26px;background:rgba(14,165,233,.18);border:2px solid #0ea5e9" onclick="activate('geo')"><div class="apill" style="background:#0ea5e9;color:#000"><span class="n">③</span>LocalizationSlim</div></div>
+        <div class="anno" data-id="hero" style="top:111px;left:0;right:0;height:220px;background:rgba(245,158,11,.13);border:2px solid #f59e0b" onclick="activate('hero')"><div class="apill" style="background:#f59e0b;color:#000"><span class="n">④</span>XjsFullImage</div></div>
+        <div class="anno" data-id="plancards" style="top:331px;left:0;right:0;height:172px;background:rgba(239,68,68,.13);border:2px solid #ef4444" onclick="activate('plancards')"><div class="apill" style="background:#ef4444"><span class="n">⑤</span>PlanCard / PlanGrid</div></div>
+        <div class="anno" data-id="promobanner" style="top:503px;left:0;right:0;height:88px;background:rgba(139,92,246,.14);border:2px solid #8b5cf6" onclick="activate('promobanner')"><div class="apill" style="background:#8b5cf6"><span class="n">⑥</span>XjsFullImage (Promo Banner)</div></div>
+        <div class="anno" data-id="faq" style="top:591px;left:0;right:0;height:132px;background:rgba(16,185,129,.14);border:2px solid #10b981" onclick="activate('faq')"><div class="apill" style="background:#10b981;color:#000"><span class="n">⑦</span>FAQAccordion</div></div>
+        <div class="anno" data-id="iconstack" style="top:723px;left:0;right:0;height:84px;background:rgba(168,85,247,.14);border:2px solid #a855f7" onclick="activate('iconstack')"><div class="apill" style="background:#a855f7"><span class="n">⑧</span>XjsIconStackBlock</div></div>
+        <div class="anno" data-id="legal" style="top:807px;left:0;right:0;height:34px;background:rgba(236,72,153,.15);border:2px solid #ec4899" onclick="activate('legal')"><div class="apill" style="background:#ec4899"><span class="n">⑨</span>Legal / Disclaimer</div></div>
+      </div></div>
     </div></div>
   </div>
 
-  <!-- ══ PAGE 2: MOBILE ══ -->
+  <!-- PAGE 2: MOBILE -->
   <div class="page-view" id="pv-2">
     <div class="pv-label">xfinity.com/learn/mobile</div>
-    <div class="browser"><div class="bbar"><div class="bdots"><span class="br"></span><span class="by"></span><span class="bg"></span></div><div class="burl">🔒 xfinity.com/learn/mobile</div></div>
-    <div class="mockup" id="mk-2">
-      <div class="nav"><div class="nb">xfinity</div><div class="nl"><span>Internet</span><span>Mobile</span><span>TV &amp; Streaming</span><span>Home Solutions</span></div><div class="na"><span>🔍</span><span>🛒</span><span class="nsi">Sign In</span></div></div>
-      <div class="sub-nav"><div class="sn-item sna">Overview</div><div class="sn-item">Plans</div><div class="sn-item">Network</div><div class="sn-item">Bring Your Own Device</div><div class="sn-item">Mobile Deals</div></div>
-      <div class="hero" style="background:linear-gradient(120deg,#1a0a3a,#2d1a8a)"><div class="ht"><div class="hey" style="color:rgba(255,255,255,.7)">Xfinity Mobile</div><div class="hh" style="color:#fff">Stay connected from here to the land of Oz</div><div class="hb" style="color:rgba(255,255,255,.7)">Get amazifying 300 Mbps WiFi with an Unlimited mobile line included for one low price.</div><div class="hp" style="color:#fff"><span class="amt">$40</span><br><span class="per" style="color:rgba(255,255,255,.7)">/mo for 1 year</span></div><div class="hctas"><button class="btnp">Shop plan</button><span class="btnl" style="color:#a78bfa">Pricing &amp; other info</span></div></div><div class="hv"><div class="hib" style="background:linear-gradient(150deg,#2d1a8a,#4c1d95)"><div class="hath"><div class="han">Xfinity Mobile</div></div></div></div></div>
-      <div class="mob-plans"><div class="mob-h">Choose your plan</div><div class="mob-grid">
-        <div class="mob-card feat"><div class="mob-badge">Best Value</div><div class="mob-name">Premium Unlimited</div><div class="mob-tagline">Unlimited talk, text &amp; data + advanced features</div><div class="mob-price">$30<span class="mob-sub2">/mo per add'l line</span></div><div class="mob-feats"><span>Unlimited data</span><span>Unlimited hotspot (30GB full speed)</span><span>4K video streaming</span><span>Elite Upgrade (2x/year)</span><span>Xfinity Call Guard</span><span>WiFi PowerBoost</span><span>215+ destinations incl. CA &amp; MX</span></div><div class="mob-cta">Shop Premium Unlimited</div></div>
-        <div class="mob-card"><div class="mob-name">Unlimited</div><div class="mob-tagline">Unlimited talk, text &amp; data</div><div class="mob-price">$20<span class="mob-sub2">/mo per add'l line</span></div><div class="mob-feats"><span>Unlimited data (reduced after 30GB)</span><span>Unlimited hotspot at reduced speeds</span><span>480p video streaming</span><span>WiFi PowerBoost</span><span>Canada &amp; Mexico included</span></div><div class="mob-cta">Shop Unlimited</div></div>
+    <div class="browser-outer"><div class="browser">
+      <div class="bbar"><div class="bdots"><span class="br"></span><span class="by"></span><span class="bg"></span></div><div class="burl">🔒 xfinity.com/learn/mobile</div></div>
+      <div class="mockup-scaler"><div class="mockup" id="mk-2">
+        <div class="nav"><div class="nb">xfinity</div><div class="nl"><span>Internet</span><span>Mobile</span><span>TV &amp; Streaming</span></div><div class="na"><span>🔍</span><span>🛒</span><span class="nsi">Sign In</span></div></div>
+        <div class="sub-nav"><div class="sn-item sna">Overview</div><div class="sn-item">Plans</div><div class="sn-item">Network</div><div class="sn-item">Bring Your Device</div><div class="sn-item">Mobile Deals</div></div>
+        <div class="hero" style="background:linear-gradient(120deg,#1a0a3a,#2d1a8a)"><div class="ht"><div class="hey" style="color:rgba(255,255,255,.7)">Xfinity Mobile</div><div class="hh" style="color:#fff">Stay connected from here to the land of Oz</div><div class="hb" style="color:rgba(255,255,255,.7)">Get 300 Mbps WiFi with an Unlimited mobile line included.</div><div class="hp" style="color:#fff"><span class="amt">$40</span><br><span class="per" style="color:rgba(255,255,255,.7)">/mo for 1 year</span></div><div class="hctas"><button class="btnp">Shop plan</button></div></div><div class="hv"><div class="hib" style="background:linear-gradient(150deg,#2d1a8a,#4c1d95)"><div class="hath"><div class="han">Xfinity Mobile</div></div></div></div></div>
+        <div class="mob-plans"><div class="mob-h">Choose your plan</div><div class="mob-grid"><div class="mob-card feat"><div class="mob-badge">Best Value</div><div class="mob-name">Premium Unlimited</div><div class="mob-tagline">Unlimited talk, text &amp; data + advanced features</div><div class="mob-price">$30<span class="mob-sub2">/mo per add'l line</span></div><div class="mob-feats"><span>Unlimited data</span><span>4K video streaming</span><span>Elite Upgrade (2x/year)</span><span>Xfinity Call Guard</span><span>215+ destinations</span></div><div class="mob-cta">Shop Premium Unlimited</div></div><div class="mob-card"><div class="mob-name">Unlimited</div><div class="mob-tagline">Unlimited talk, text &amp; data</div><div class="mob-price">$20<span class="mob-sub2">/mo per add'l line</span></div><div class="mob-feats"><span>Unlimited data (reduced after 30GB)</span><span>480p video streaming</span><span>WiFi PowerBoost</span><span>Canada &amp; Mexico included</span></div><div class="mob-cta">Shop Unlimited</div></div></div></div>
+        <div class="dev-sec"><div class="dev-h">Top device deals</div><div class="dev-sub">New and existing members eligible</div><div class="dev-grid"><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">iPhone</div><div class="dc-name">iPhone 17 Pro on us</div><div class="dc-price">$0</div><div class="dc-sub">w/ trade-in + Premium line</div><div class="dc-cta">Shop Now</div></div></div><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">Samsung</div><div class="dc-name">Galaxy S25 on us</div><div class="dc-price">$0</div><div class="dc-sub">w/ trade-in + Premium line</div><div class="dc-cta">Shop Now</div></div></div><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">Google</div><div class="dc-name">Pixel 10 Pro XL on us</div><div class="dc-price">$0</div><div class="dc-sub">w/ trade-in</div><div class="dc-cta">Shop Now</div></div></div><div class="dev-card"><div class="dc-img">⌚</div><div class="dc-b"><div class="dc-badge">Apple</div><div class="dc-name">Apple Watch SE 3</div><div class="dc-price">$0</div><div class="dc-sub">Diamond/Platinum members</div><div class="dc-cta">Explore</div></div></div></div></div>
+        <div class="sav"><div class="savt"><h3>Cut your bill in half</h3><p>Save $35–$76/mo vs. Verizon, T-Mobile, and AT&T.</p></div><div class="savc">Compare plans</div></div>
+        <div class="comp-table"><div class="ct-head">The Xfinity Mobile network</div><div class="ct-grid"><div class="ct-col"><div class="ct-hdr">Feature</div><div class="ct-row">5G Network</div><div class="ct-row">WiFi PowerBoost</div><div class="ct-row">Hotspot Data</div><div class="ct-row">Call Guard</div></div><div class="ct-col"><div class="ct-hdr hilite">Xfinity</div><div class="ct-row y">Most reliable</div><div class="ct-row y">Included</div><div class="ct-row y">Unlimited</div><div class="ct-row y">Included</div></div><div class="ct-col"><div class="ct-hdr">T-Mobile</div><div class="ct-row y">Available</div><div class="ct-row n">Not included</div><div class="ct-row y">Included</div><div class="ct-row n">Not included</div></div><div class="ct-col"><div class="ct-hdr">Verizon</div><div class="ct-row y">Available</div><div class="ct-row n">Not included</div><div class="ct-row y">Included</div><div class="ct-row n">Not included</div></div></div></div>
+        <div class="addr-block"><div class="addr-h">Where do you live?</div><div class="addr-p">Enter your address for the best offers</div><div class="addr-form"><input class="addr-input" placeholder="Enter your address"/><button class="addr-btn">Find My Plan</button></div></div>
+        <div class="legal">Xfinity Mobile requires Xfinity Internet. Reduced speeds after 30GB/line. Taxes &amp; fees extra.</div>
+        <!-- OVERLAYS P2 -->
+        <div class="anno" data-id="header" style="top:0;left:0;right:0;height:52px;background:rgba(99,102,241,.18);border:2px solid #6366f1" onclick="activate('header')"><div class="apill" style="background:#6366f1"><span class="n">①</span>XcHeader</div></div>
+        <div class="anno" data-id="subnav" style="top:52px;left:0;right:0;height:33px;background:rgba(251,191,36,.16);border:2px solid #fbbf24" onclick="activate('subnav')"><div class="apill" style="background:#fbbf24;color:#000"><span class="n">②</span>SubNavigation</div></div>
+        <div class="anno" data-id="hero" style="top:85px;left:0;right:0;height:220px;background:rgba(245,158,11,.13);border:2px solid #f59e0b" onclick="activate('hero')"><div class="apill" style="background:#f59e0b;color:#000"><span class="n">③</span>XjsFullImage</div></div>
+        <div class="anno" data-id="plancards" style="top:305px;left:0;right:0;height:208px;background:rgba(239,68,68,.13);border:2px solid #ef4444" onclick="activate('plancards')"><div class="apill" style="background:#ef4444"><span class="n">④</span>PlanCard / PlanGrid</div></div>
+        <div class="anno" data-id="devicecards" style="top:513px;left:0;right:0;height:160px;background:rgba(239,68,68,.14);border:2px solid #ef4444" onclick="activate('devicecards')"><div class="apill" style="background:#ef4444"><span class="n">⑤</span>Device Offer Cards</div></div>
+        <div class="anno" data-id="promobanner" style="top:673px;left:0;right:0;height:88px;background:rgba(139,92,246,.14);border:2px solid #8b5cf6" onclick="activate('promobanner')"><div class="apill" style="background:#8b5cf6"><span class="n">⑥</span>XjsFullImage (Promo Banner)</div></div>
+        <div class="anno" data-id="comptable" style="top:761px;left:0;right:0;height:132px;background:rgba(6,182,212,.14);border:2px solid #06b6d4" onclick="activate('comptable')"><div class="apill" style="background:#06b6d4;color:#000"><span class="n">⑦</span>ComparisonTable</div></div>
+        <div class="anno" data-id="addressform" style="top:893px;left:0;right:0;height:94px;background:rgba(16,185,129,.14);border:2px solid #10b981" onclick="activate('addressform')"><div class="apill" style="background:#10b981;color:#000"><span class="n">⑧</span>AddressEntryForm</div></div>
+        <div class="anno" data-id="legal" style="top:987px;left:0;right:0;height:34px;background:rgba(236,72,153,.15);border:2px solid #ec4899" onclick="activate('legal')"><div class="apill" style="background:#ec4899"><span class="n">⑨</span>Legal / Disclaimer</div></div>
       </div></div>
-      <div class="dev-sec"><div class="dev-h">Top device deals</div><div class="dev-sub">New and existing members eligible</div><div class="dev-grid"><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">iPhone</div><div class="dc-name">iPhone 17 Pro on us</div><div class="dc-price">$0</div><div class="dc-sub">w/ trade-in + Premium line</div><div class="dc-cta">Shop Now</div></div></div><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">Samsung</div><div class="dc-name">Galaxy S25 on us</div><div class="dc-price">$0</div><div class="dc-sub">w/ trade-in + Premium line</div><div class="dc-cta">Shop Now</div></div></div><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">Google</div><div class="dc-name">Pixel 10 Pro XL on us</div><div class="dc-price">$0</div><div class="dc-sub">w/ trade-in + Premium line</div><div class="dc-cta">Shop Now</div></div></div><div class="dev-card"><div class="dc-img">⌚</div><div class="dc-b"><div class="dc-badge">Apple</div><div class="dc-name">Apple Watch SE 3 on us</div><div class="dc-price">$0</div><div class="dc-sub">Diamond/Platinum members</div><div class="dc-cta">Explore benefits</div></div></div></div></div>
-      <div class="sav"><div class="savt"><h3>'Tis the season to cut your bill in half</h3><p>Save between $35–$76/mo vs. Verizon, T-Mobile, and AT&T in your first year.</p></div><div class="savc">Compare our plans</div></div>
-      <div class="comp-table"><div class="ct-head">The Xfinity Mobile network</div><div class="ct-grid"><div class="ct-col"><div class="ct-hdr">Feature</div><div class="ct-row">5G Network</div><div class="ct-row">WiFi PowerBoost</div><div class="ct-row">Hotspot Data</div><div class="ct-row">Call Guard</div></div><div class="ct-col"><div class="ct-hdr hilite">Xfinity Mobile</div><div class="ct-row y">America's most reliable</div><div class="ct-row y">Included</div><div class="ct-row y">Unlimited</div><div class="ct-row y">Included</div></div><div class="ct-col"><div class="ct-hdr">T-Mobile</div><div class="ct-row y">Available</div><div class="ct-row n">Not included</div><div class="ct-row y">Included</div><div class="ct-row n">Not included</div></div><div class="ct-col"><div class="ct-hdr">Verizon</div><div class="ct-row y">Available</div><div class="ct-row n">Not included</div><div class="ct-row y">Included</div><div class="ct-row n">Not included</div></div></div></div>
-      <div class="addr-block"><div class="addr-h">Where do you live?</div><div class="addr-p">Enter your address for the best offers</div><div class="addr-form"><input class="addr-input" placeholder="Enter your address" /><button class="addr-btn">Find My Plan</button></div></div>
-      <div class="legal">Xfinity Mobile requires Xfinity Internet. Reduced speeds after 30GB of usage/line. Data thresholds may vary. Taxes &amp; fees extra.</div>
-      <!-- OVERLAYS -->
-      <div class="anno" data-id="header" style="top:0;left:0;right:0;height:52px;background:rgba(99,102,241,.18);border:2px solid #6366f1" onclick="activate('header')"><div class="apill" style="background:#6366f1"><span class="n">①</span>XcHeader</div></div>
-      <div class="anno" data-id="subnav" style="top:52px;left:0;right:0;height:34px;background:rgba(251,191,36,.16);border:2px solid #fbbf24" onclick="activate('subnav')"><div class="apill" style="background:#fbbf24;color:#000"><span class="n">②</span>SubNavigation</div></div>
-      <div class="anno" data-id="hero" style="top:86px;left:0;right:0;height:240px;background:rgba(245,158,11,.13);border:2px solid #f59e0b" onclick="activate('hero')"><div class="apill" style="background:#f59e0b;color:#000"><span class="n">③</span>XjsFullImage</div></div>
-      <div class="anno" data-id="plancards" style="top:326px;left:0;right:0;height:220px;background:rgba(239,68,68,.13);border:2px solid #ef4444" onclick="activate('plancards')"><div class="apill" style="background:#ef4444"><span class="n">④</span>PlanCard / PlanGrid</div></div>
-      <div class="anno" data-id="devicecards" style="top:546px;left:0;right:0;height:170px;background:rgba(239,68,68,.14);border:2px solid #ef4444" onclick="activate('devicecards')"><div class="apill" style="background:#ef4444"><span class="n">⑤</span>Device Offer Cards</div></div>
-      <div class="anno" data-id="promobanner" style="top:716px;left:0;right:0;height:90px;background:rgba(139,92,246,.14);border:2px solid #8b5cf6" onclick="activate('promobanner')"><div class="apill" style="background:#8b5cf6"><span class="n">⑥</span>XjsFullImage (Promo Banner)</div></div>
-      <div class="anno" data-id="comptable" style="top:806px;left:0;right:0;height:140px;background:rgba(6,182,212,.14);border:2px solid #06b6d4" onclick="activate('comptable')"><div class="apill" style="background:#06b6d4;color:#000"><span class="n">⑦</span>ComparisonTable</div></div>
-      <div class="anno" data-id="addressform" style="top:946px;left:0;right:0;height:98px;background:rgba(16,185,129,.14);border:2px solid #10b981" onclick="activate('addressform')"><div class="apill" style="background:#10b981;color:#000"><span class="n">⑧</span>AddressEntryForm</div></div>
-      <div class="anno" data-id="legal" style="top:1044px;left:0;right:0;height:34px;background:rgba(236,72,153,.15);border:2px solid #ec4899" onclick="activate('legal')"><div class="apill" style="background:#ec4899"><span class="n">⑨</span>Legal / Disclaimer</div></div>
     </div></div>
   </div>
 
-  <!-- ══ PAGE 3: TV & STREAMING ══ -->
+  <!-- PAGE 3: TV -->
   <div class="page-view" id="pv-3">
     <div class="pv-label">xfinity.com/learn/digital-cable-tv</div>
-    <div class="browser"><div class="bbar"><div class="bdots"><span class="br"></span><span class="by"></span><span class="bg"></span></div><div class="burl">🔒 xfinity.com/learn/digital-cable-tv</div></div>
-    <div class="mockup" id="mk-3">
-      <div class="nav"><div class="nb">xfinity</div><div class="nl"><span>Internet</span><span>Mobile</span><span>TV &amp; Streaming</span><span>Home Solutions</span></div><div class="na"><span>🔍</span><span>🛒</span><span class="nsi">Sign In</span></div></div>
-      <div class="sub-nav"><div class="sn-item sna">Overview</div><div class="sn-item">Live TV</div><div class="sn-item">StreamStore</div><div class="sn-item">Sports</div></div>
-      <div class="addr-block" style="padding:14px 18px;text-align:left;display:flex;align-items:center;justify-content:space-between"><div><div style="font-size:12px;font-weight:800;color:#2d1a8a;margin-bottom:4px">Build your entertainment plan</div><div style="font-size:10px;color:#555">Enter your address for the best offers</div></div><div style="display:flex;gap:8px"><input class="addr-input" style="width:200px" placeholder="Enter address"/><button class="addr-btn">Find My Plan</button></div></div>
-      <div class="hero" style="background:linear-gradient(120deg,#1a0f3a,#2d1a8a,#4c1d95);min-height:200px"><div class="ht"><div class="hey" style="color:rgba(255,255,255,.7)">Every minute. Every medal.</div><div class="hh" style="color:#fff;font-size:20px">Experience The Winter Olympics on the Olympics Hub</div><div class="hb" style="color:rgba(255,255,255,.7)">Enhanced 4K, Fan View, and Multiview with Xfinity TV and the X1 TV Box.</div><div class="hctas"><button class="btnp">Build your plan</button></div></div><div class="hv"><div class="hib" style="background:linear-gradient(150deg,#2d1a8a,#7c3aed)"><div class="hath"><div class="han">Olympics Hub</div><div class="hab">Xfinity TV</div></div></div></div></div>
-      <div class="car-sec"><div class="car-h">Xfinity TV features</div><div class="car-tr"><div class="car-card"><div class="cimg" style="background:linear-gradient(135deg,#f0f5ff,#dde8ff)">📺</div><div class="cbody"><div class="ctit">Multiview</div><div style="font-size:9.5px;color:#444;line-height:1.4">Watch up to 4 events on one screen</div><div class="ccta">Explore</div></div></div><div class="car-card"><div class="cimg" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe)">🎥</div><div class="cbody"><div class="ctit">Enhanced 4K</div><div style="font-size:9.5px;color:#444;line-height:1.4">Witness every detail in 4K quality</div><div class="ccta">Explore</div></div></div><div class="car-card"><div class="cimg" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5)">🎙️</div><div class="cbody"><div class="ctit">Voice Remote</div><div style="font-size:9.5px;color:#444;line-height:1.4">Just say "Olympics" and you're in Milan</div><div class="ccta">Explore</div></div></div></div></div>
-      <div class="stream-banner"><div class="st-logos"><div class="st-logo" style="background:#000">🦚</div><div class="st-logo" style="background:#000">🍎</div><div class="st-logo" style="background:#e50914;border-radius:8px">N</div></div><div class="st-text"><h3>StreamSaver™ — All your streaming in one place</h3><p>Peacock Premium + Apple TV+ + Netflix. Simplified billing, one price.</p></div><div class="st-cta">Add StreamSaver</div></div>
-      <div class="tabs-s"><div class="tabs-h"><div class="tb2 at">Live TV</div><div class="tb2">StreamStore</div><div class="tb2">Sports</div><div class="tb2">Add-ons</div></div><div class="tabs-b"><div class="plan-card"><div class="pc-spd">Starter</div><div class="pc-name">Sports &amp; News</div><div class="pc-price">$80<span class="pc-sub">/mo</span></div><div class="pc-feat"><span>50+ live channels</span><span>Peacock Premium</span><span>4K TV Box + DVR</span></div><div class="pc-cta">Shop</div></div><div class="plan-card feat"><div class="pc-tag">Popular</div><div class="pc-spd">Latino</div><div class="pc-name">Latino TV</div><div class="pc-price">$25<span class="pc-sub">/mo</span></div><div class="pc-feat"><span>Spanish-language channels</span><span>ViX Premium</span><span>200+ channels total</span></div><div class="pc-cta">Shop</div></div><div class="plan-card"><div class="pc-spd">International</div><div class="pc-name">International Packs</div><div class="pc-price">Varies</div><div class="pc-feat"><span>Global channels</span><span>Country-specific packs</span></div><div class="pc-cta">Shop</div></div></div></div>
-      <div class="ist"><div class="isth">Entertainment add-ons</div><div class="istg"><div class="isi"><div class="isic">➕</div><div class="istx"><strong>Add-on Channels</strong><span>Max, Paramount+, sports packs</span></div></div><div class="isi"><div class="isic">🌎</div><div class="istx"><strong>International</strong><span>Channels from across the globe</span></div></div><div class="isi"><div class="isic">📱</div><div class="istx"><strong>Xfinity Stream App</strong><span>Watch anywhere, any device</span></div></div><div class="isi"><div class="isic">📦</div><div class="istx"><strong>Xumo Stream Box</strong><span>All top apps in one place</span></div></div></div></div>
-      <div class="legal">Restrictions apply. Xfinity Internet or TV req'd. Taxes extra. Pricing subj. to change.</div>
-      <!-- OVERLAYS -->
-      <div class="anno" data-id="header" style="top:0;left:0;right:0;height:52px;background:rgba(99,102,241,.18);border:2px solid #6366f1" onclick="activate('header')"><div class="apill" style="background:#6366f1"><span class="n">①</span>XcHeader</div></div>
-      <div class="anno" data-id="subnav" style="top:52px;left:0;right:0;height:34px;background:rgba(251,191,36,.16);border:2px solid #fbbf24" onclick="activate('subnav')"><div class="apill" style="background:#fbbf24;color:#000"><span class="n">②</span>SubNavigation</div></div>
-      <div class="anno" data-id="addressform" style="top:86px;left:0;right:0;height:58px;background:rgba(16,185,129,.14);border:2px solid #10b981" onclick="activate('addressform')"><div class="apill" style="background:#10b981;color:#000"><span class="n">③</span>AddressEntryForm</div></div>
-      <div class="anno" data-id="hero" style="top:144px;left:0;right:0;height:200px;background:rgba(245,158,11,.13);border:2px solid #f59e0b" onclick="activate('hero')"><div class="apill" style="background:#f59e0b;color:#000"><span class="n">④</span>XjsFullImage</div></div>
-      <div class="anno" data-id="carousel" style="top:344px;left:0;right:0;height:168px;background:rgba(6,182,212,.13);border:2px solid #06b6d4" onclick="activate('carousel')"><div class="apill" style="background:#06b6d4;color:#000"><span class="n">⑤</span>JssCarousel</div></div>
-      <div class="anno" data-id="streamsaver" style="top:512px;left:0;right:0;height:84px;background:rgba(168,85,247,.14);border:2px solid #a855f7" onclick="activate('streamsaver')"><div class="apill" style="background:#a855f7"><span class="n">⑥</span>StreamSaver / PromoBanner</div></div>
-      <div class="anno" data-id="tabs" style="top:596px;left:0;right:0;height:186px;background:rgba(6,182,212,.14);border:2px solid #06b6d4" onclick="activate('tabs')"><div class="apill" style="background:#06b6d4;color:#000"><span class="n">⑦</span>InlineTabsContainer</div></div>
-      <div class="anno" data-id="iconstack" style="top:782px;left:0;right:0;height:90px;background:rgba(168,85,247,.14);border:2px solid #a855f7" onclick="activate('iconstack')"><div class="apill" style="background:#a855f7"><span class="n">⑧</span>XjsIconStackBlock</div></div>
-      <div class="anno" data-id="legal" style="top:872px;left:0;right:0;height:34px;background:rgba(236,72,153,.15);border:2px solid #ec4899" onclick="activate('legal')"><div class="apill" style="background:#ec4899"><span class="n">⑨</span>Legal / Disclaimer</div></div>
+    <div class="browser-outer"><div class="browser">
+      <div class="bbar"><div class="bdots"><span class="br"></span><span class="by"></span><span class="bg"></span></div><div class="burl">🔒 xfinity.com/learn/digital-cable-tv</div></div>
+      <div class="mockup-scaler"><div class="mockup" id="mk-3">
+        <div class="nav"><div class="nb">xfinity</div><div class="nl"><span>Internet</span><span>Mobile</span><span>TV &amp; Streaming</span></div><div class="na"><span>🔍</span><span>🛒</span><span class="nsi">Sign In</span></div></div>
+        <div class="sub-nav"><div class="sn-item sna">Overview</div><div class="sn-item">Live TV</div><div class="sn-item">StreamStore</div><div class="sn-item">Sports</div></div>
+        <div class="addr-block" style="padding:12px 18px;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:10px"><div><div style="font-size:11px;font-weight:800;color:#2d1a8a;margin-bottom:3px">Build your entertainment plan</div><div style="font-size:9px;color:#555">Enter your address for the best offers</div></div><div style="display:flex;gap:7px"><input class="addr-input" style="width:180px" placeholder="Enter address"/><button class="addr-btn">Find Plan</button></div></div>
+        <div class="hero" style="background:linear-gradient(120deg,#1a0f3a,#2d1a8a,#4c1d95);min-height:200px"><div class="ht"><div class="hey" style="color:rgba(255,255,255,.7)">Every minute. Every medal.</div><div class="hh" style="color:#fff;font-size:18px">Experience The Winter Olympics on the Olympics Hub</div><div class="hb" style="color:rgba(255,255,255,.7)">Enhanced 4K, Fan View, and Multiview with Xfinity TV and X1.</div><div class="hctas"><button class="btnp">Build your plan</button></div></div><div class="hv"><div class="hib" style="background:linear-gradient(150deg,#2d1a8a,#7c3aed)"><div class="hath"><div class="han">Olympics Hub</div><div class="hab">Xfinity TV</div></div></div></div></div>
+        <div class="car-sec"><div class="car-h">Xfinity TV features</div><div class="car-tr"><div class="car-card"><div class="cimg" style="background:linear-gradient(135deg,#f0f5ff,#dde8ff)">📺</div><div class="cbody"><div class="ctit">Multiview</div><div style="font-size:9px;color:#444;line-height:1.4">Watch 4 events on one screen</div><div class="ccta">Explore</div></div></div><div class="car-card"><div class="cimg" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe)">🎥</div><div class="cbody"><div class="ctit">Enhanced 4K</div><div style="font-size:9px;color:#444;line-height:1.4">Every detail in 4K</div><div class="ccta">Explore</div></div></div><div class="car-card"><div class="cimg" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5)">🎙️</div><div class="cbody"><div class="ctit">Voice Remote</div><div style="font-size:9px;color:#444;line-height:1.4">Say "Olympics" and you're there</div><div class="ccta">Explore</div></div></div></div></div>
+        <div class="stream-banner"><div class="st-logos"><div class="st-logo" style="background:#000">🦚</div><div class="st-logo" style="background:#000">🍎</div><div class="st-logo" style="background:#e50914;border-radius:8px">N</div></div><div class="st-text"><h3>StreamSaver™</h3><p>Peacock + Apple TV+ + Netflix. One price, simplified billing.</p></div><div class="st-cta">Add StreamSaver</div></div>
+        <div class="tabs-s"><div class="tabs-h"><div class="tb2 at">Live TV</div><div class="tb2">StreamStore</div><div class="tb2">Sports</div><div class="tb2">Add-ons</div></div><div class="tabs-b"><div class="plan-card"><div class="pc-spd">Starter</div><div class="pc-name">Sports &amp; News</div><div class="pc-price">$80<span class="pc-sub">/mo</span></div><div class="pc-feat"><span>50+ live channels</span><span>Peacock Premium</span><span>4K TV Box + DVR</span></div><div class="pc-cta">Shop</div></div><div class="plan-card feat"><div class="pc-tag">Popular</div><div class="pc-spd">Latino</div><div class="pc-name">Latino TV</div><div class="pc-price">$25<span class="pc-sub">/mo</span></div><div class="pc-feat"><span>Spanish-language channels</span><span>ViX Premium</span></div><div class="pc-cta">Shop</div></div><div class="plan-card"><div class="pc-spd">International</div><div class="pc-name">International Packs</div><div class="pc-price">Varies</div><div class="pc-feat"><span>Global channels</span><span>Country-specific packs</span></div><div class="pc-cta">Shop</div></div></div></div>
+        <div class="ist"><div class="isth">Entertainment add-ons</div><div class="istg"><div class="isi"><div class="isic">➕</div><div class="istx"><strong>Add-on Channels</strong><span>Max, Paramount+, sports packs</span></div></div><div class="isi"><div class="isic">🌎</div><div class="istx"><strong>International</strong><span>Channels from across the globe</span></div></div><div class="isi"><div class="isic">📱</div><div class="istx"><strong>Stream App</strong><span>Watch anywhere, any device</span></div></div><div class="isi"><div class="isic">📦</div><div class="istx"><strong>Xumo Stream Box</strong><span>All top apps in one place</span></div></div></div></div>
+        <div class="legal">Restrictions apply. Xfinity Internet or TV req'd. Taxes extra. Pricing subj. to change.</div>
+        <!-- OVERLAYS P3 -->
+        <div class="anno" data-id="header" style="top:0;left:0;right:0;height:52px;background:rgba(99,102,241,.18);border:2px solid #6366f1" onclick="activate('header')"><div class="apill" style="background:#6366f1"><span class="n">①</span>XcHeader</div></div>
+        <div class="anno" data-id="subnav" style="top:52px;left:0;right:0;height:33px;background:rgba(251,191,36,.16);border:2px solid #fbbf24" onclick="activate('subnav')"><div class="apill" style="background:#fbbf24;color:#000"><span class="n">②</span>SubNavigation</div></div>
+        <div class="anno" data-id="addressform" style="top:85px;left:0;right:0;height:55px;background:rgba(16,185,129,.14);border:2px solid #10b981" onclick="activate('addressform')"><div class="apill" style="background:#10b981;color:#000"><span class="n">③</span>AddressEntryForm</div></div>
+        <div class="anno" data-id="hero" style="top:140px;left:0;right:0;height:200px;background:rgba(245,158,11,.13);border:2px solid #f59e0b" onclick="activate('hero')"><div class="apill" style="background:#f59e0b;color:#000"><span class="n">④</span>XjsFullImage</div></div>
+        <div class="anno" data-id="carousel" style="top:340px;left:0;right:0;height:158px;background:rgba(6,182,212,.13);border:2px solid #06b6d4" onclick="activate('carousel')"><div class="apill" style="background:#06b6d4;color:#000"><span class="n">⑤</span>JssCarousel</div></div>
+        <div class="anno" data-id="streamsaver" style="top:498px;left:0;right:0;height:80px;background:rgba(168,85,247,.14);border:2px solid #a855f7" onclick="activate('streamsaver')"><div class="apill" style="background:#a855f7"><span class="n">⑥</span>StreamSaver / PromoBanner</div></div>
+        <div class="anno" data-id="tabs" style="top:578px;left:0;right:0;height:170px;background:rgba(6,182,212,.14);border:2px solid #06b6d4" onclick="activate('tabs')"><div class="apill" style="background:#06b6d4;color:#000"><span class="n">⑦</span>InlineTabsContainer</div></div>
+        <div class="anno" data-id="iconstack" style="top:748px;left:0;right:0;height:84px;background:rgba(168,85,247,.14);border:2px solid #a855f7" onclick="activate('iconstack')"><div class="apill" style="background:#a855f7"><span class="n">⑧</span>XjsIconStackBlock</div></div>
+        <div class="anno" data-id="legal" style="top:832px;left:0;right:0;height:34px;background:rgba(236,72,153,.15);border:2px solid #ec4899" onclick="activate('legal')"><div class="apill" style="background:#ec4899"><span class="n">⑨</span>Legal / Disclaimer</div></div>
+      </div></div>
     </div></div>
   </div>
 
-  <!-- ══ PAGE 4: HOME SECURITY ══ -->
+  <!-- PAGE 4: HOME SECURITY -->
   <div class="page-view" id="pv-4">
     <div class="pv-label">xfinity.com/learn/home-security</div>
-    <div class="browser"><div class="bbar"><div class="bdots"><span class="br"></span><span class="by"></span><span class="bg"></span></div><div class="burl">🔒 xfinity.com/learn/home-security</div></div>
-    <div class="mockup" id="mk-4">
-      <div class="nav"><div class="nb">xfinity</div><div class="nl"><span>Internet</span><span>Mobile</span><span>TV &amp; Streaming</span><span>Home Solutions</span></div><div class="na"><span>🔍</span><span>🛒</span><span class="nsi">Sign In</span></div></div>
-      <div class="sub-nav"><div class="sn-item sna">Overview</div><div class="sn-item">Smart Home</div><div class="sn-item">Home Security</div><div class="sn-item">Equipment</div></div>
-      <div class="sec2up">
-        <div class="s2c"><div class="s2img">🏠</div><div class="s2name">Xfinity Smart Home</div><div class="s2desc">Check in on your home from anywhere, with live and recorded video. Get started for only $10/mo with no contract.</div><div class="s2price">$10<span style="font-size:11px;color:#666">/mo</span></div><div class="s2cta">Discover Smart Home</div></div>
-        <div class="s2c"><div class="s2img">🛡️</div><div class="s2name">Xfinity Home Security</div><div class="s2desc">Professional protection. Trusted connection. Like a force field for your home.</div><div class="s2price">$45<span style="font-size:11px;color:#666">/mo</span></div><div class="s2cta">Discover Home Security</div></div>
-      </div>
-      <div class="comp-table"><div class="ct-head">Feature comparison</div><div class="ct-grid"><div class="ct-col"><div class="ct-hdr">Feature</div><div class="ct-row">24/7 Video Recording</div><div class="ct-row">No Contract</div><div class="ct-row">Pro Monitoring</div><div class="ct-row">Battery Backup</div><div class="ct-row">Cellular Data</div></div><div class="ct-col"><div class="ct-hdr hilite">Smart Home $10/mo</div><div class="ct-row y">Included</div><div class="ct-row y">Included</div><div class="ct-row n">Not included</div><div class="ct-row n">Not included</div><div class="ct-row n">Not included</div></div><div class="ct-col"><div class="ct-hdr hilite">Home Security $45/mo</div><div class="ct-row y">Included</div><div class="ct-row y">Included</div><div class="ct-row y">24/7 Pro monitoring</div><div class="ct-row y">Included</div><div class="ct-row y">Included</div></div><div class="ct-col"><div class="ct-hdr">Competitors</div><div class="ct-row y">Varies</div><div class="ct-row n">Contract req'd</div><div class="ct-row y">Extra cost</div><div class="ct-row y">Extra cost</div><div class="ct-row y">Extra cost</div></div></div></div>
-      <div class="ist"><div class="isth">Your smart home. Your way.</div><div class="istg"><div class="isi"><div class="isic">📷</div><div class="istx"><strong>Indoor Cameras</strong><span>Live and recorded video anywhere</span></div></div><div class="isi"><div class="isic">🔔</div><div class="istx"><strong>Smart Doorbell</strong><span>See who's at the door remotely</span></div></div><div class="isi"><div class="isic">🔒</div><div class="istx"><strong>Smart Lock</strong><span>Keyless entry, controlled via app</span></div></div><div class="isi"><div class="isic">💡</div><div class="istx"><strong>Smart Lighting</strong><span>Control lights from anywhere</span></div></div></div></div>
-      <div class="htiles"><div class="htile"><div class="hti">🌐</div><div class="htl">Internet</div></div><div class="htile"><div class="hti">📱</div><div class="htl">Mobile</div></div><div class="htile"><div class="hti">📺</div><div class="htl">Entertainment</div></div><div class="htile"><div class="hti">🔒</div><div class="htl">Home Solutions</div></div><div class="htile" style="border-right:none"><div class="hti">🛠️</div><div class="htl">Build Your Plan</div></div></div>
-      <div class="award-bar"><div class="aw-icon">🏆</div><div class="aw-text"><strong>Powered by the Xfinity WiFi Gateway</strong><span>Seamlessly check all your smart home devices in one place — no extra hub required.</span></div></div>
-      <div class="faq-section"><div class="faq-head">Frequently asked questions</div><div class="faq-item"><div class="faq-q">Does Xfinity Smart Home require professional installation?</div><div class="faq-a">No. Pick up equipment in-store and self-install in minutes. No technician visit required.</div></div><div class="faq-item"><div class="faq-q">What's the difference between Smart Home and Home Security?</div><div class="faq-a">Smart Home ($10/mo) is self-monitored. Home Security ($45/mo) includes 24/7 professional monitoring, battery backup, and cellular data backup.</div></div></div>
-      <div class="legal">Restrictions apply. Not available in all areas. Equipment sold separately. Pricing subject to change. Taxes and fees extra.</div>
-      <!-- OVERLAYS -->
-      <div class="anno" data-id="header" style="top:0;left:0;right:0;height:52px;background:rgba(99,102,241,.18);border:2px solid #6366f1" onclick="activate('header')"><div class="apill" style="background:#6366f1"><span class="n">①</span>XcHeader</div></div>
-      <div class="anno" data-id="subnav" style="top:52px;left:0;right:0;height:34px;background:rgba(251,191,36,.16);border:2px solid #fbbf24" onclick="activate('subnav')"><div class="apill" style="background:#fbbf24;color:#000"><span class="n">②</span>SubNavigation</div></div>
-      <div class="anno" data-id="twoup" style="top:86px;left:0;right:0;height:170px;background:rgba(245,158,11,.13);border:2px solid #f59e0b" onclick="activate('twoup')"><div class="apill" style="background:#f59e0b;color:#000"><span class="n">③</span>TwoUpPromo</div></div>
-      <div class="anno" data-id="comptable" style="top:256px;left:0;right:0;height:160px;background:rgba(6,182,212,.14);border:2px solid #06b6d4" onclick="activate('comptable')"><div class="apill" style="background:#06b6d4;color:#000"><span class="n">④</span>ComparisonTable</div></div>
-      <div class="anno" data-id="iconstack" style="top:416px;left:0;right:0;height:90px;background:rgba(168,85,247,.14);border:2px solid #a855f7" onclick="activate('iconstack')"><div class="apill" style="background:#a855f7"><span class="n">⑤</span>XjsIconStackBlock</div></div>
-      <div class="anno" data-id="hovertile" style="top:506px;left:0;right:0;height:93px;background:rgba(249,115,22,.14);border:2px solid #f97316" onclick="activate('hovertile')"><div class="apill" style="background:#f97316"><span class="n">⑥</span>JssBentoBox (Hover Tiles)</div></div>
-      <div class="anno" data-id="awardbadge" style="top:599px;left:0;right:0;height:60px;background:rgba(251,191,36,.14);border:2px solid #fbbf24" onclick="activate('awardbadge')"><div class="apill" style="background:#fbbf24;color:#000"><span class="n">⑦</span>AwardBadge / TrustBadge</div></div>
-      <div class="anno" data-id="faq" style="top:659px;left:0;right:0;height:130px;background:rgba(16,185,129,.14);border:2px solid #10b981" onclick="activate('faq')"><div class="apill" style="background:#10b981;color:#000"><span class="n">⑧</span>FAQAccordion</div></div>
-      <div class="anno" data-id="legal" style="top:789px;left:0;right:0;height:34px;background:rgba(236,72,153,.15);border:2px solid #ec4899" onclick="activate('legal')"><div class="apill" style="background:#ec4899"><span class="n">⑨</span>Legal / Disclaimer</div></div>
+    <div class="browser-outer"><div class="browser">
+      <div class="bbar"><div class="bdots"><span class="br"></span><span class="by"></span><span class="bg"></span></div><div class="burl">🔒 xfinity.com/learn/home-security</div></div>
+      <div class="mockup-scaler"><div class="mockup" id="mk-4">
+        <div class="nav"><div class="nb">xfinity</div><div class="nl"><span>Internet</span><span>Mobile</span><span>TV &amp; Streaming</span><span>Home Solutions</span></div><div class="na"><span>🔍</span><span>🛒</span><span class="nsi">Sign In</span></div></div>
+        <div class="sub-nav"><div class="sn-item sna">Overview</div><div class="sn-item">Smart Home</div><div class="sn-item">Home Security</div><div class="sn-item">Equipment</div></div>
+        <div class="sec2up"><div class="s2c"><div class="s2img">🏠</div><div class="s2name">Xfinity Smart Home</div><div class="s2desc">Check in from anywhere, with live and recorded video. Get started for only $10/mo with no contract.</div><div class="s2price">$10<span style="font-size:10px;color:#666">/mo</span></div><div class="s2cta">Discover Smart Home</div></div><div class="s2c"><div class="s2img">🛡️</div><div class="s2name">Xfinity Home Security</div><div class="s2desc">Professional protection. Trusted connection. Like a force field for your home.</div><div class="s2price">$45<span style="font-size:10px;color:#666">/mo</span></div><div class="s2cta">Discover Home Security</div></div></div>
+        <div class="comp-table"><div class="ct-head">Feature comparison</div><div class="ct-grid"><div class="ct-col"><div class="ct-hdr">Feature</div><div class="ct-row">24/7 Video Recording</div><div class="ct-row">No Contract</div><div class="ct-row">Pro Monitoring</div><div class="ct-row">Battery Backup</div><div class="ct-row">Cellular Data</div></div><div class="ct-col"><div class="ct-hdr hilite">Smart Home $10/mo</div><div class="ct-row y">Included</div><div class="ct-row y">Included</div><div class="ct-row n">Not included</div><div class="ct-row n">Not included</div><div class="ct-row n">Not included</div></div><div class="ct-col"><div class="ct-hdr hilite">Security $45/mo</div><div class="ct-row y">Included</div><div class="ct-row y">Included</div><div class="ct-row y">24/7 Pro monitoring</div><div class="ct-row y">Included</div><div class="ct-row y">Included</div></div><div class="ct-col"><div class="ct-hdr">Competitors</div><div class="ct-row y">Varies</div><div class="ct-row n">Contract req'd</div><div class="ct-row y">Extra cost</div><div class="ct-row y">Extra cost</div><div class="ct-row y">Extra cost</div></div></div></div>
+        <div class="ist"><div class="isth">Your smart home. Your way.</div><div class="istg"><div class="isi"><div class="isic">📷</div><div class="istx"><strong>Indoor Cameras</strong><span>Live and recorded video</span></div></div><div class="isi"><div class="isic">🔔</div><div class="istx"><strong>Smart Doorbell</strong><span>See who's at the door</span></div></div><div class="isi"><div class="isic">🔒</div><div class="istx"><strong>Smart Lock</strong><span>Keyless entry via app</span></div></div><div class="isi"><div class="isic">💡</div><div class="istx"><strong>Smart Lighting</strong><span>Control from anywhere</span></div></div></div></div>
+        <div class="htiles"><div class="htile"><div class="hti">🌐</div><div class="htl">Internet</div></div><div class="htile"><div class="hti">📱</div><div class="htl">Mobile</div></div><div class="htile"><div class="hti">📺</div><div class="htl">Entertainment</div></div><div class="htile"><div class="hti">🔒</div><div class="htl">Home Solutions</div></div><div class="htile" style="border-right:none"><div class="hti">🛠️</div><div class="htl">Build Your Plan</div></div></div>
+        <div class="award-bar"><div class="aw-icon">🏆</div><div class="aw-text"><strong>Powered by the Xfinity WiFi Gateway</strong><span>No extra hub required — manage everything in one app.</span></div></div>
+        <div class="faq-section"><div class="faq-head">Frequently asked questions</div><div class="faq-item"><div class="faq-q">Does Xfinity Smart Home require professional installation?</div><div class="faq-a">No. Pick up equipment in-store and self-install in minutes. No technician visit required.</div></div><div class="faq-item"><div class="faq-q">What's the difference between Smart Home and Home Security?</div><div class="faq-a">Smart Home ($10/mo) is self-monitored. Home Security ($45/mo) includes 24/7 professional monitoring, battery backup, and cellular backup.</div></div></div>
+        <div class="legal">Restrictions apply. Not available in all areas. Equipment sold separately. Pricing subject to change. Taxes and fees extra.</div>
+        <!-- OVERLAYS P4 -->
+        <div class="anno" data-id="header" style="top:0;left:0;right:0;height:52px;background:rgba(99,102,241,.18);border:2px solid #6366f1" onclick="activate('header')"><div class="apill" style="background:#6366f1"><span class="n">①</span>XcHeader</div></div>
+        <div class="anno" data-id="subnav" style="top:52px;left:0;right:0;height:33px;background:rgba(251,191,36,.16);border:2px solid #fbbf24" onclick="activate('subnav')"><div class="apill" style="background:#fbbf24;color:#000"><span class="n">②</span>SubNavigation</div></div>
+        <div class="anno" data-id="twoup" style="top:85px;left:0;right:0;height:164px;background:rgba(245,158,11,.13);border:2px solid #f59e0b" onclick="activate('twoup')"><div class="apill" style="background:#f59e0b;color:#000"><span class="n">③</span>TwoUpPromo</div></div>
+        <div class="anno" data-id="comptable" style="top:249px;left:0;right:0;height:154px;background:rgba(6,182,212,.14);border:2px solid #06b6d4" onclick="activate('comptable')"><div class="apill" style="background:#06b6d4;color:#000"><span class="n">④</span>ComparisonTable</div></div>
+        <div class="anno" data-id="iconstack" style="top:403px;left:0;right:0;height:84px;background:rgba(168,85,247,.14);border:2px solid #a855f7" onclick="activate('iconstack')"><div class="apill" style="background:#a855f7"><span class="n">⑤</span>XjsIconStackBlock</div></div>
+        <div class="anno" data-id="hovertile" style="top:487px;left:0;right:0;height:86px;background:rgba(249,115,22,.14);border:2px solid #f97316" onclick="activate('hovertile')"><div class="apill" style="background:#f97316"><span class="n">⑥</span>JssBentoBox (Hover Tiles)</div></div>
+        <div class="anno" data-id="awardbadge" style="top:573px;left:0;right:0;height:58px;background:rgba(251,191,36,.14);border:2px solid #fbbf24" onclick="activate('awardbadge')"><div class="apill" style="background:#fbbf24;color:#000"><span class="n">⑦</span>AwardBadge / TrustBadge</div></div>
+        <div class="anno" data-id="faq" style="top:631px;left:0;right:0;height:125px;background:rgba(16,185,129,.14);border:2px solid #10b981" onclick="activate('faq')"><div class="apill" style="background:#10b981;color:#000"><span class="n">⑧</span>FAQAccordion</div></div>
+        <div class="anno" data-id="legal" style="top:756px;left:0;right:0;height:34px;background:rgba(236,72,153,.15);border:2px solid #ec4899" onclick="activate('legal')"><div class="apill" style="background:#ec4899"><span class="n">⑨</span>Legal / Disclaimer</div></div>
+      </div></div>
     </div></div>
   </div>
 
-  <!-- ══ PAGE 5: DEALS ══ -->
+  <!-- PAGE 5: DEALS -->
   <div class="page-view" id="pv-5">
     <div class="pv-label">xfinity.com/learn/deals</div>
-    <div class="browser"><div class="bbar"><div class="bdots"><span class="br"></span><span class="by"></span><span class="bg"></span></div><div class="burl">🔒 xfinity.com/learn/deals</div></div>
-    <div class="mockup" id="mk-5">
-      <div class="nav"><div class="nb">xfinity</div><div class="nl"><span>Internet</span><span>Mobile</span><span>TV &amp; Streaming</span><span>Home Solutions</span></div><div class="na"><span>🔍</span><span>🛒</span><span class="nsi">Sign In</span></div></div>
-      <div class="sub-nav"><div class="sn-item sna">All Deals</div><div class="sn-item">Internet</div><div class="sn-item">Mobile</div><div class="sn-item">TV</div><div class="sn-item">Bundles</div></div>
-      <div class="geo">Shopping from <strong>Herndon</strong> &nbsp;<a href="#">Change</a></div>
-      <div class="hero"><div class="ht"><div class="hey">Limited Time Offer</div><div class="hh">Our best deals for new &amp; existing members</div><div class="hb">Internet. Mobile. TV. Home Security. Save more when you bundle.</div><div class="hctas"><button class="btnp">Shop All Deals</button><span class="btnl">See all offers</span></div></div><div class="hv"><div class="hib"><div class="hath"><div class="han">Offer ends 2/24</div></div></div></div></div>
-      <div class="bento"><div class="bc"><div class="bct">Gig Internet<br><span class="bcn" style="font-size:22px">$50</span><span class="bcs">/mo for 5 yrs</span></div></div><div class="bc"><div class="bct">iPhone 17 Pro on us<br><span class="bcn" style="font-size:22px">$0</span><span class="bcs">w/ trade-in</span></div></div><div class="bc"><div class="bct">Sports &amp; News TV<br><span class="bcn" style="font-size:22px">$80</span><span class="bcs">/mo</span></div></div><div class="bc"><div class="bct">Activation fee covered<br><span class="bcn" style="font-size:22px">$0</span><span class="bcs">thru 2/24</span></div></div></div>
-      <div class="tabs-s"><div class="tabs-h"><div class="tb2 at">All Deals</div><div class="tb2">Internet</div><div class="tb2">Mobile</div><div class="tb2">TV</div><div class="tb2">Bundles</div></div><div class="tabs-b"><div class="plan-card"><div class="pc-name">Gig Internet</div><div class="pc-price">$50<span class="pc-sub">/mo 5 yrs</span></div><div class="pc-feat"><span>5-Year Guarantee</span><span>Peacock 2yrs free</span></div><div class="pc-cta">Shop Internet</div></div><div class="plan-card feat"><div class="pc-tag">Bundle &amp; Save</div><div class="pc-name">Internet + Mobile</div><div class="pc-price">$60<span class="pc-sub">/mo</span></div><div class="pc-feat"><span>Gig WiFi + 1 Unlimited line</span><span>Save $35–$76/mo vs competitors</span></div><div class="pc-cta">Build Your Plan</div></div><div class="plan-card"><div class="pc-name">NOW Internet</div><div class="pc-price">$30<span class="pc-sub">/mo</span></div><div class="pc-feat"><span>No contract prepaid</span><span>Taxes &amp; fees included</span></div><div class="pc-cta">Shop NOW</div></div></div></div>
-      <div class="dev-sec"><div class="dev-h">Top device deals</div><div class="dev-sub">Offers end 2/24/26 — new and existing members eligible</div><div class="dev-grid"><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">iPhone</div><div class="dc-name">iPhone 17 Pro on us</div><div class="dc-price">$0</div><div class="dc-sub">w/ trade-in + Premium line</div><div class="dc-cta">Shop Now</div></div></div><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">Samsung</div><div class="dc-name">Galaxy S25 on us</div><div class="dc-price">$0</div><div class="dc-sub">w/ trade-in + Premium line</div><div class="dc-cta">Shop Now</div></div></div><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">iPhone</div><div class="dc-name">Save 50% off iPhone 17</div><div class="dc-price">50% off</div><div class="dc-sub">No trade-in required</div><div class="dc-cta">Shop Now</div></div></div><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">Google</div><div class="dc-name">Pixel 10 Pro XL on us</div><div class="dc-price">$0</div><div class="dc-sub">w/ trade-in + Premium line</div><div class="dc-cta">Shop Now</div></div></div></div></div>
-      <div class="stream-banner"><div class="st-logos"><div class="st-logo" style="background:#000">🦚</div><div class="st-logo" style="background:#000">🍎</div><div class="st-logo" style="background:#e50914;border-radius:8px">N</div></div><div class="st-text"><h3>StreamSaver™</h3><p>Peacock + Apple TV+ + Netflix. Add it to any Xfinity Internet or TV plan.</p></div><div class="st-cta">Add StreamSaver</div></div>
-      <div class="sav"><div class="savt"><h3>Military &amp; veteran discounts</h3><p>Exclusive discounts for those who serve — 2 years of Xfinity Mobile on us, and more.</p></div><div class="savc">See military deals</div></div>
-      <div class="legal">Offers end 2/24/26. New and existing customers. Restrictions apply. Xfinity Internet required for mobile. Taxes and fees extra. Subj. to change.</div>
-      <!-- OVERLAYS -->
-      <div class="anno" data-id="header" style="top:0;left:0;right:0;height:52px;background:rgba(99,102,241,.18);border:2px solid #6366f1" onclick="activate('header')"><div class="apill" style="background:#6366f1"><span class="n">①</span>XcHeader</div></div>
-      <div class="anno" data-id="subnav" style="top:52px;left:0;right:0;height:34px;background:rgba(251,191,36,.16);border:2px solid #fbbf24" onclick="activate('subnav')"><div class="apill" style="background:#fbbf24;color:#000"><span class="n">②</span>SubNavigation</div></div>
-      <div class="anno" data-id="geo" style="top:86px;left:0;right:0;height:28px;background:rgba(14,165,233,.18);border:2px solid #0ea5e9" onclick="activate('geo')"><div class="apill" style="background:#0ea5e9;color:#000"><span class="n">③</span>LocalizationSlim</div></div>
-      <div class="anno" data-id="hero" style="top:114px;left:0;right:0;height:200px;background:rgba(245,158,11,.13);border:2px solid #f59e0b" onclick="activate('hero')"><div class="apill" style="background:#f59e0b;color:#000"><span class="n">④</span>XjsFullImage</div></div>
-      <div class="anno" data-id="bento" style="top:314px;left:0;right:0;height:90px;background:rgba(16,185,129,.16);border:2px solid #10b981" onclick="activate('bento')"><div class="apill" style="background:#10b981;color:#000"><span class="n">⑤</span>JssBentoBox / BentoCard</div></div>
-      <div class="anno" data-id="tabs" style="top:404px;left:0;right:0;height:180px;background:rgba(6,182,212,.14);border:2px solid #06b6d4" onclick="activate('tabs')"><div class="apill" style="background:#06b6d4;color:#000"><span class="n">⑥</span>InlineTabsContainer</div></div>
-      <div class="anno" data-id="devicecards" style="top:584px;left:0;right:0;height:170px;background:rgba(239,68,68,.14);border:2px solid #ef4444" onclick="activate('devicecards')"><div class="apill" style="background:#ef4444"><span class="n">⑦</span>Device Offer Cards</div></div>
-      <div class="anno" data-id="streamsaver" style="top:754px;left:0;right:0;height:84px;background:rgba(168,85,247,.14);border:2px solid #a855f7" onclick="activate('streamsaver')"><div class="apill" style="background:#a855f7"><span class="n">⑧</span>StreamSaver / PromoBanner</div></div>
-      <div class="anno" data-id="promobanner" style="top:838px;left:0;right:0;height:84px;background:rgba(139,92,246,.14);border:2px solid #8b5cf6" onclick="activate('promobanner')"><div class="apill" style="background:#8b5cf6"><span class="n">⑨</span>XjsFullImage (Promo Banner)</div></div>
-      <div class="anno" data-id="legal" style="top:922px;left:0;right:0;height:34px;background:rgba(236,72,153,.15);border:2px solid #ec4899" onclick="activate('legal')"><div class="apill" style="background:#ec4899"><span class="n">⑩</span>Legal / Disclaimer</div></div>
+    <div class="browser-outer"><div class="browser">
+      <div class="bbar"><div class="bdots"><span class="br"></span><span class="by"></span><span class="bg"></span></div><div class="burl">🔒 xfinity.com/learn/deals</div></div>
+      <div class="mockup-scaler"><div class="mockup" id="mk-5">
+        <div class="nav"><div class="nb">xfinity</div><div class="nl"><span>Internet</span><span>Mobile</span><span>TV &amp; Streaming</span><span>Home Solutions</span></div><div class="na"><span>🔍</span><span>🛒</span><span class="nsi">Sign In</span></div></div>
+        <div class="sub-nav"><div class="sn-item sna">All Deals</div><div class="sn-item">Internet</div><div class="sn-item">Mobile</div><div class="sn-item">TV</div><div class="sn-item">Bundles</div></div>
+        <div class="geo">Shopping from <strong>Herndon</strong> &nbsp;<a href="#">Change</a></div>
+        <div class="hero"><div class="ht"><div class="hey">Limited Time Offer</div><div class="hh">Our best deals for new &amp; existing members</div><div class="hb">Internet. Mobile. TV. Home Security. Save more when you bundle.</div><div class="hctas"><button class="btnp">Shop All Deals</button></div></div><div class="hv"><div class="hib"><div class="hath"><div class="han">Offer ends 2/24</div></div></div></div></div>
+        <div class="bento"><div class="bc"><div class="bct">Gig Internet<br><span class="bcn" style="font-size:20px">$50</span><span class="bcs">/mo 5 yrs</span></div></div><div class="bc"><div class="bct">iPhone 17 Pro<br><span class="bcn" style="font-size:20px">$0</span><span class="bcs">w/ trade-in</span></div></div><div class="bc"><div class="bct">Sports &amp; News TV<br><span class="bcn" style="font-size:20px">$80</span><span class="bcs">/mo</span></div></div><div class="bc"><div class="bct">Activation Fee<br><span class="bcn" style="font-size:20px">$0</span><span class="bcs">thru 2/24</span></div></div></div>
+        <div class="tabs-s"><div class="tabs-h"><div class="tb2 at">All Deals</div><div class="tb2">Internet</div><div class="tb2">Mobile</div><div class="tb2">TV</div><div class="tb2">Bundles</div></div><div class="tabs-b"><div class="plan-card"><div class="pc-name">Gig Internet</div><div class="pc-price">$50<span class="pc-sub">/mo 5 yrs</span></div><div class="pc-feat"><span>5-Year Guarantee</span><span>Peacock 2yrs free</span></div><div class="pc-cta">Shop Internet</div></div><div class="plan-card feat"><div class="pc-tag">Bundle &amp; Save</div><div class="pc-name">Internet + Mobile</div><div class="pc-price">$60<span class="pc-sub">/mo</span></div><div class="pc-feat"><span>Gig WiFi + 1 Unlimited line</span><span>Save $35–$76/mo</span></div><div class="pc-cta">Build Your Plan</div></div><div class="plan-card"><div class="pc-name">NOW Internet</div><div class="pc-price">$30<span class="pc-sub">/mo</span></div><div class="pc-feat"><span>No contract prepaid</span><span>Taxes &amp; fees included</span></div><div class="pc-cta">Shop NOW</div></div></div></div>
+        <div class="dev-sec"><div class="dev-h">Top device deals</div><div class="dev-sub">Offers end 2/24/26</div><div class="dev-grid"><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">iPhone</div><div class="dc-name">iPhone 17 Pro on us</div><div class="dc-price">$0</div><div class="dc-sub">w/ trade-in + Premium line</div><div class="dc-cta">Shop Now</div></div></div><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">Samsung</div><div class="dc-name">Galaxy S25 on us</div><div class="dc-price">$0</div><div class="dc-sub">w/ trade-in</div><div class="dc-cta">Shop Now</div></div></div><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">iPhone</div><div class="dc-name">Save 50% off iPhone 17</div><div class="dc-price">50% off</div><div class="dc-sub">No trade-in required</div><div class="dc-cta">Shop Now</div></div></div><div class="dev-card"><div class="dc-img">📱</div><div class="dc-b"><div class="dc-badge">Google</div><div class="dc-name">Pixel 10 Pro XL on us</div><div class="dc-price">$0</div><div class="dc-sub">w/ trade-in</div><div class="dc-cta">Shop Now</div></div></div></div></div>
+        <div class="stream-banner"><div class="st-logos"><div class="st-logo" style="background:#000">🦚</div><div class="st-logo" style="background:#000">🍎</div><div class="st-logo" style="background:#e50914;border-radius:8px">N</div></div><div class="st-text"><h3>StreamSaver™</h3><p>Peacock + Apple TV+ + Netflix. One price.</p></div><div class="st-cta">Add StreamSaver</div></div>
+        <div class="sav"><div class="savt"><h3>Military &amp; veteran discounts</h3><p>Exclusive discounts — 2 years of Xfinity Mobile on us.</p></div><div class="savc">See military deals</div></div>
+        <div class="legal">Offers end 2/24/26. Restrictions apply. Xfinity Internet required for mobile. Taxes and fees extra. Subj. to change.</div>
+        <!-- OVERLAYS P5 -->
+        <div class="anno" data-id="header" style="top:0;left:0;right:0;height:52px;background:rgba(99,102,241,.18);border:2px solid #6366f1" onclick="activate('header')"><div class="apill" style="background:#6366f1"><span class="n">①</span>XcHeader</div></div>
+        <div class="anno" data-id="subnav" style="top:52px;left:0;right:0;height:33px;background:rgba(251,191,36,.16);border:2px solid #fbbf24" onclick="activate('subnav')"><div class="apill" style="background:#fbbf24;color:#000"><span class="n">②</span>SubNavigation</div></div>
+        <div class="anno" data-id="geo" style="top:85px;left:0;right:0;height:26px;background:rgba(14,165,233,.18);border:2px solid #0ea5e9" onclick="activate('geo')"><div class="apill" style="background:#0ea5e9;color:#000"><span class="n">③</span>LocalizationSlim</div></div>
+        <div class="anno" data-id="hero" style="top:111px;left:0;right:0;height:200px;background:rgba(245,158,11,.13);border:2px solid #f59e0b" onclick="activate('hero')"><div class="apill" style="background:#f59e0b;color:#000"><span class="n">④</span>XjsFullImage</div></div>
+        <div class="anno" data-id="bento" style="top:311px;left:0;right:0;height:86px;background:rgba(16,185,129,.16);border:2px solid #10b981" onclick="activate('bento')"><div class="apill" style="background:#10b981;color:#000"><span class="n">⑤</span>JssBentoBox / BentoCard</div></div>
+        <div class="anno" data-id="tabs" style="top:397px;left:0;right:0;height:170px;background:rgba(6,182,212,.14);border:2px solid #06b6d4" onclick="activate('tabs')"><div class="apill" style="background:#06b6d4;color:#000"><span class="n">⑥</span>InlineTabsContainer</div></div>
+        <div class="anno" data-id="devicecards" style="top:567px;left:0;right:0;height:160px;background:rgba(239,68,68,.14);border:2px solid #ef4444" onclick="activate('devicecards')"><div class="apill" style="background:#ef4444"><span class="n">⑦</span>Device Offer Cards</div></div>
+        <div class="anno" data-id="streamsaver" style="top:727px;left:0;right:0;height:80px;background:rgba(168,85,247,.14);border:2px solid #a855f7" onclick="activate('streamsaver')"><div class="apill" style="background:#a855f7"><span class="n">⑧</span>StreamSaver / PromoBanner</div></div>
+        <div class="anno" data-id="promobanner" style="top:807px;left:0;right:0;height:80px;background:rgba(139,92,246,.14);border:2px solid #8b5cf6" onclick="activate('promobanner')"><div class="apill" style="background:#8b5cf6"><span class="n">⑨</span>XjsFullImage (Promo Banner)</div></div>
+        <div class="anno" data-id="legal" style="top:887px;left:0;right:0;height:34px;background:rgba(236,72,153,.15);border:2px solid #ec4899" onclick="activate('legal')"><div class="apill" style="background:#ec4899"><span class="n">⑩</span>Legal / Disclaimer</div></div>
+      </div></div>
     </div></div>
   </div>
 
 </div><!-- /canvas -->
 
+<!-- PANEL BACKDROP -->
+<div class="panel-backdrop" id="backdrop" onclick="closePanel()"></div>
+
 <!-- DETAIL PANEL -->
-<div class="panel">
+<div class="panel" id="panel">
   <div class="ph">
-    <h2>Component Registry</h2>
+    <div class="ph-row">
+      <h2>Component Registry</h2>
+      <button class="panel-close" onclick="closePanel()">✕</button>
+    </div>
     <div id="sel-disp">← Click any component to inspect</div>
   </div>
   <div class="leg-list" id="leg-list"></div>
@@ -489,129 +546,82 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
     <div class="ss"><div class="sn" style="color:#fff">15</div><div class="sl">Total</div></div>
   </div>
 </div>
-</div>
+
+</div><!-- /main -->
 
 <script>
-const CATS = [
-  { label:'Global Shell', ids:['header','footer','subnav','geo'] },
-  { label:'Hero & Promo', ids:['hero','promobanner','twoup','streamsaver'] },
-  { label:'Content Layouts', ids:['bento','hovertile','iconstack'] },
-  { label:'Commerce & Offers', ids:['plancards','devicecards','carousel','comptable'] },
-  { label:'Interactive', ids:['tabs','faq','addressform'] },
-  { label:'Trust & Legal', ids:['awardbadge','legal'] },
+/* ── DATA ── */
+const CATS=[
+  {label:'Global Shell',ids:['header','footer','subnav','geo']},
+  {label:'Hero & Promo',ids:['hero','promobanner','twoup','streamsaver']},
+  {label:'Content Layouts',ids:['bento','hovertile','iconstack']},
+  {label:'Commerce & Offers',ids:['plancards','devicecards','carousel','comptable']},
+  {label:'Interactive',ids:['tabs','faq','addressform']},
+  {label:'Trust & Legal',ids:['awardbadge','legal']},
 ];
-
-const COMPS = {
-  header:{ num:'①', color:'#6366f1', name:'XcHeader', jss:'XcHeader (Polaris)', aem:'Custom Header Component', type:'Custom', risk:'High',
-    pages:['Overview','Internet','Mobile','TV & Streaming','Home Security','Deals'],
-    desc:'Global navigation bar. Auth-aware — renders different states for anonymous vs signed-in users. Built on Polaris design system. Appears on every page.',
-    warn:'Dispatcher caching breaks with auth-aware nav. Must use ESI tags or client-side fragment for authenticated state injection. A single cached page CANNOT serve both states.',
-    info:'Two implementation paths: (1) Rebuild in HTL + clientlib — AEM-native, fully cacheable, recommended. (2) Wrap Polaris React component in AEM clientlib — faster but fragile. Resolve Polaris npm registry access in Cloud Manager pipeline before dev starts.' },
-  footer:{ num:'⑫', color:'#6366f1', name:'XcFooter', jss:'XcFooter (Polaris)', aem:'Custom Footer Component', type:'Custom', risk:'High',
-    pages:['All Pages'],
-    desc:'5-column link footer with brand logo, copyright, Privacy/Terms, social links. Same Polaris design system dependency as XcHeader.',
-    warn:'Solve Polaris dependency ONCE — apply to both XcHeader and XcFooter together. Treating them as independent problems doubles the risk and the work.',
-    info:'Build as custom component editable from ONE shared location (not per-page). Content model: linkColumns[] multifield, legalText RTE, copyrightText, socialLinks[]. Fully cacheable at Dispatcher — no auth-aware logic needed in footer.' },
-  subnav:{ num:'②', color:'#fbbf24', name:'SubNavigation', jss:'InlineSubNav / XcNavTabs', aem:'AEM Core Navigation (Extended)', type:'Core Ext.', risk:'Low',
-    pages:['Internet','Mobile','TV & Streaming','Home Security','Deals'],
-    desc:'Section-level sub-navigation tabs (e.g., Overview / Plans / Equipment / Deals) that appear on product learn pages. Highlights active section.',
-    warn:'Active tab state must be driven by URL path — not hard-coded. Ensure AEM page path mapping to tab highlight logic is built into the component, not the template.',
-    info:'Extend AEM Core Navigation v1 with a "tabStyle" policy and active-path selector. Dialog fields: linkItems[] (label + path), styleVariant (underline/pill). Current page detection via Sling request path.' },
-  geo:{ num:'③', color:'#0ea5e9', name:'LocalizationSlim', jss:'LocalizationSlim', aem:'Custom Geo/Address Component', type:'Custom', risk:'High',
-    pages:['Overview','Internet','Deals'],
-    desc:'"Shopping from Herndon / Change" geo-aware bar. Drives offer personalisation across the entire page. Result stored in cookie — Akamai edge logic reads it to serve geo-specific content.',
-    warn:'Comcast address API cannot be called directly from AEM Cloud Publish tier (egress restrictions). Must proxy via Adobe I/O Runtime or Comcast API Gateway. Akamai VCL rules must be updated to carry the geo cookie — verify BEFORE go-live, not after.',
-    info:'Render input field via HTL. API endpoint URL in data-attribute from OSGi config — never hardcoded. JS handles API call + cookie write + page refresh/personalisation trigger. Test Akamai edge rule propagation in staging environment.' },
-  hero:{ num:'④', color:'#f59e0b', name:'XjsFullImage', jss:'XjsFullImage', aem:'AEM Core Teaser v2 (Extended)', type:'Core Ext.', risk:'Med',
-    pages:['Overview','Internet','Mobile','TV & Streaming','Deals'],
-    desc:'Full-width hero with background image/gradient, foreground product/athlete image, eyebrow, headline, body, price callout, and up to 2 CTAs. Most-used component across the site.',
-    warn:'Time-limited promotional heroes (Olympics, seasonal promos) MUST have an expiryDate field + author-alert workflow. A stale Olympic hero post-event is a brand risk that WILL happen without this.',
-    info:'Extend Teaser v2 via sling:resourceSuperType. Add dialog fields: mobileImage, overlayPosition (left/center/right), expiryDate, backgroundTheme (light/dark), athleteName, athleteBadge, legalText. Use Adaptive Image Servlet for responsive srcset. Map JSS fields.* directly to AEM dialog fields.' },
-  promobanner:{ num:'⑥', color:'#8b5cf6', name:'XjsFullImage (Promo Banner)', jss:'XjsFullImage (dark variant)', aem:'AEM Core Teaser v2 (Extended)', type:'Core Ext.', risk:'Low',
-    pages:['Overview','Internet','Mobile','TV & Streaming','Deals'],
-    desc:'Full-width dark background promotional banner with headline, body, and single CTA. "Cut your bill in half", savings comparison banners. Dark variant of XjsFullImage.',
-    warn:'Do NOT build a separate component for this. It is the same XjsFullImage with a backgroundTheme:dark policy. Building separately creates component sprawl and doubles maintenance.',
-    info:'Add backgroundTheme (light/dark) as a component style policy in Editable Template. Dark variant uses CSS class override — same HTL template, different styling. One component, controlled by policy.' },
-  twoup:{ num:'③', color:'#f59e0b', name:'TwoUpPromo', jss:'XjsTwoUp / JssTwoColumnPromo', aem:'AEM Core Teaser v2 (Extended)', type:'Core Ext.', risk:'Low',
-    pages:['Home Security'],
-    desc:'Side-by-side 2-column promotional layout. Each column has an image, headline, description, price, and CTA. Used for Smart Home vs Home Security product comparison.',
-    warn:'Authors will want to mix different content in each column. Ensure each column is independently authorable — NOT a single component with left/right fields. Use a container with 2 nested Teaser instances.',
-    info:'Build as a 2-column parsys container (CSS Grid: 50/50 or 40/60). Each cell accepts a Teaser v2 component. Grid gap and responsive stacking controlled by component policy. No custom Java needed.' },
-  streamsaver:{ num:'⑥', color:'#a855f7', name:'StreamSaver / PromoBanner', jss:'XjsFullImage (streaming variant)', aem:'AEM Core Teaser v2 (Extended)', type:'Core Ext.', risk:'Low',
-    pages:['TV & Streaming','Deals'],
-    desc:'Dark streaming-branded banner featuring StreamSaver (Peacock + Apple TV+ + Netflix). Includes service logos, headline, sub-copy, and CTA.',
-    warn:'Service logos (Peacock, Apple, Netflix) have brand usage guidelines. DAM folder for approved partner logos should be created and locked — authors should not upload random logo files.',
-    info:'Add a logoImages[] multifield to XjsFullImage extended dialog for this variant. backgroundTheme:streaming uses a specific gradient/dark style. Same component, different policy variant.' },
-  bento:{ num:'⑤', color:'#10b981', name:'JssBentoBox / BentoCard', jss:'JssBentoBox + JssBentoCard', aem:'Custom BentoContainer + BentoCard', type:'Custom', risk:'Med',
-    pages:['Overview','Deals'],
-    desc:'4-column benefit strip. Mixed card types: text+icon, large price callout, text-only. No AEM Core equivalent for this asymmetric layout.',
-    warn:'3 distinct card variants (text+icon, price callout, text-only) must be ONE BentoCard component with a cardType dialog selector — not 3 separate components. Three components = authoring chaos and inconsistent styling.',
-    info:'Build parsys-based BentoContainer (drag-orderable). CSS Grid layout for columns. BentoCard dialog: cardType selector (controls which fields show/hide via dialog condition), icon, headline, bodyText, priceFigure, priceUnit, linkURL.' },
-  hovertile:{ num:'⑤', color:'#f97316', name:'JssBentoBox (Hover Tiles)', jss:'JssBentoBox (tile variant)', aem:'Custom CardGrid + HoverTile', type:'Custom', risk:'Med',
-    pages:['Overview','Home Security'],
-    desc:'5-column product navigation tiles (Internet, Mobile, TV, Security, Build Your Plan) with image, label, and link. Hover state swaps image.',
-    warn:'CSS-only :hover for image swap — do NOT implement as JS-driven state. JS hover breaks Dispatcher caching and hurts performance. CSS transition is sufficient and cacheable.',
-    info:'HoverTile dialog: defaultImage (DAM), hoverImage (DAM), label (text), linkURL. CSS: .htile img.hover { opacity:0; transition:opacity .25s } .htile:hover img.hover { opacity:1 }. Touch fallback: tap toggles active class via minimal JS.' },
-  iconstack:{ num:'⑧', color:'#a855f7', name:'XjsIconStackBlock', jss:'XjsIconStackBlock', aem:'Custom IconCard + List Container', type:'Custom', risk:'Low',
-    pages:['Overview','Internet','TV & Streaming','Home Security'],
-    desc:'Icon + headline + body text grid. Used for feature benefit callouts across all product pages. "Get more with Xfinity", "Your smart home your way".',
-    warn:'Do NOT use individual icon PNGs uploaded to DAM per instance. Standardise on Polaris SVG sprite or icon font class system loaded via clientlib. DAM bloat from 100s of tiny icons is a real migration problem.',
-    info:'IconCard dialog: iconClass (dropdown of Polaris icon names), headline (text), bodyText (textarea), linkURL (optional). Container: parsys-based, CSS Grid for responsive column layout. Grid columns configured via component policy (2/3/4 col).' },
-  plancards:{ num:'⑤', color:'#ef4444', name:'PlanCard / PlanGrid', jss:'PlanCard + PlanGrid', aem:'Custom PlanCard + Grid Container', type:'Custom', risk:'High',
-    pages:['Internet','Mobile','Deals'],
-    desc:'Plan comparison cards showing speed/tier, price, feature list, and CTA. Used across Internet and Mobile pages. Featured card variant with highlighted border.',
-    warn:'Pricing and plan features change frequently. If plan data is API-driven in Sitecore, that integration MUST be re-architected for AEM Cloud egress restrictions. If manually authored, an expiry/review workflow is non-negotiable.',
-    info:'Content model: planTier, planName, speedLabel, price, priceUnit, pricePeriod, featureList[] (multifield), isFeatured (bool), featuredTag, ctaLabel, ctaLink, expiryDate. Container: parsys-based, CSS Grid. Featured card = border + background via component style. Tag a plan as featured via dialog toggle — not by building a separate "FeaturedPlanCard" component.' },
-  devicecards:{ num:'⑦', color:'#ef4444', name:'Device Offer Cards', jss:'DeviceCardGrid', aem:'Custom DeviceCard + Grid Container', type:'Custom', risk:'High',
-    pages:['Overview','Mobile','Deals'],
-    desc:'4-column device offer grid. iPhone, Samsung, Google Pixel with dynamic pricing, brand badge, trade-in conditions, CTA. Appears across multiple pages.',
-    warn:'Pricing changes WEEKLY. Whether API-driven or manually authored, an offer expiry workflow with 48hr author notification is mandatory. A stale "$0 iPhone" offer post-expiry is a legal and brand risk.',
-    info:'Content model: deviceBrand, deviceName, offerHeadline, price, priceUnit, tradeInRequired (bool), tradeInDetails, ctaLabel, ctaLink, expiryDate, badgeLabel, productImage (DAM). Container: CSS Grid 4-col. Expiry date triggers AEM workflow notification.' },
-  carousel:{ num:'⑦', color:'#06b6d4', name:'JssCarousel', jss:'JssCarousel', aem:'AEM Core Carousel v1 (Extended)', type:'Core Ext.', risk:'Med',
-    pages:['Overview','TV & Streaming'],
-    desc:'Touch-enabled content carousel with dot/arrow navigation. Shows promotional content, device deals, TV feature highlights.',
-    warn:'If carousel shows multiple items per slide simultaneously (2-3 cards visible), AEM Core Carousel v1 does NOT support this. You need a custom container with Splide.js or Swiper.',
-    info:'Single-item: use Core Carousel v1 with nested Teaser/Card components. Multi-item: custom container using Splide.js (lightweight, accessible). Track slide interactions in analytics datalayer. Extend dialog for autoplaySpeed, showIndicators, itemsPerSlide.' },
-  comptable:{ num:'⑦', color:'#06b6d4', name:'ComparisonTable', jss:'XjsComparisonTable', aem:'Custom Comparison Table Component', type:'Custom', risk:'Med',
-    pages:['Mobile','Home Security'],
-    desc:'Feature comparison grid. Xfinity vs competitors (T-Mobile, Verizon, AT&T) or plan-vs-plan (Smart Home vs Home Security). Check/cross marks per feature row.',
-    warn:'Table data must be independently authored — do NOT hardcode competitor names or feature values in the template. Competitors change their plans; authors must be able to update without a developer.',
-    info:'Content model: tableTitle, columns[] (multifield: columnLabel, isHighlighted bool), rows[] (multifield: featureLabel, values[] per column with value type: check/cross/text). Build as AEM component with a structured multifield dialog. Responsive: scroll-x on mobile or collapse to cards.' },
-  tabs:{ num:'⑥', color:'#06b6d4', name:'InlineTabsContainer', jss:'InlineTabsContainer', aem:'AEM Core Tabs v1 (Extended)', type:'Core Ext.', risk:'Low',
-    pages:['TV & Streaming','Deals','Overview (below fold)'],
-    desc:'Horizontal tab switcher for plan/offer comparison. Internet Plans / Mobile Plans / Bundles. Each panel contains dragged-in child components.',
-    warn:'Tab click events MUST fire analytics datalayer events. Add data-tab-label and data-tab-id attributes to each tab button for the tracking script to pick up.',
-    info:'AEM Core Tabs v1 handles container, ARIA roles, and keyboard navigation out of the box — use it. Extend dialog for: defaultActiveTab, tabStyle (underline/pill). Each panel is a nested parsys — authors drop any component inside. No custom tab logic needed.' },
-  faq:{ num:'⑦', color:'#10b981', name:'FAQAccordion', jss:'XjsFAQAccordion', aem:'AEM Core Accordion v1', type:'Core', risk:'Low',
-    pages:['Internet','Home Security'],
-    desc:'Expandable FAQ sections with question + answer pairs. "+" icon toggles open state. Appears on Internet and Home Security learn pages.',
-    warn:'FAQ content should be Content Fragments if the same FAQ answers appear across multiple pages. Duplicating FAQ content in individual component instances creates content debt instantly.',
-    info:'AEM Core Accordion v1 handles expand/collapse, ARIA, and keyboard nav. No custom component needed. If FAQs repeat across pages, model as Content Fragments with a CF List component — single source of truth, referenced everywhere.' },
-  addressform:{ num:'⑧', color:'#10b981', name:'AddressEntryForm', jss:'LocalizationSlim (full variant)', aem:'Custom Address Entry Component', type:'Custom', risk:'High',
-    pages:['Mobile','TV & Streaming'],
-    desc:'"Where do you live? Enter your address for the best offers" full-width address entry form. Larger variant of LocalizationSlim — includes heading, sub-copy, input + button.',
-    warn:'Same API integration risk as LocalizationSlim. AEM Cloud Publish egress restrictions apply. All considerations identical — proxy through Adobe I/O Runtime or API Gateway. Do not build as a separate component from LocalizationSlim.',
-    info:'This is a layout/style variant of the same LocalizationSlim component, not a different component. Add a displayVariant dialog field (slim/full) that controls rendering context. Same API integration, same cookie logic, different visual presentation.' },
-  awardbadge:{ num:'⑦', color:'#fbbf24', name:'AwardBadge / TrustBadge', jss:'XjsTrustBadge', aem:'AEM Core Text (extended) or Custom', type:'Core', risk:'Low',
-    pages:['Home Security'],
-    desc:'Award citation bar (e.g., J.D. Power ranking, reliability stats). Icon + headline + supporting text. Builds trust and credibility.',
-    warn:'Award claims have expiry dates and require legal review. An author workflow for review/expiry on trust claims is strongly recommended — outdated award citations are a legal liability.',
-    info:'If simple: AEM Core Text component styled with trust-badge CSS class via component policy. If structured (icon + headline + body + expiry): build lightweight custom component with iconImage (DAM), headline, bodyText, expiryDate fields.' },
-  legal:{ num:'⑨', color:'#ec4899', name:'Legal / Disclaimer', jss:'Inline text / XdsPage field', aem:'AEM Core Text Component (RTE)', type:'Core', risk:'Low',
-    pages:['All Pages'],
-    desc:'Fine print disclaimer bars below every offer section. Contains offer end dates, restrictions, eligibility conditions. Appears after every promotional component.',
-    warn:'Legal text MUST NEVER be embedded inside hero or offer component body copy. Offer end dates change independently — they must be separately authorable. Violating this creates content debt where updating a date requires editing the hero.',
-    info:'Straight AEM Core Text component with RTE. Place in a dedicated parsys slot below each offer section. Consider Content Fragments for legal text that repeats across multiple pages — single source, referenced everywhere. Establish a legal text authoring workflow with compliance team.' },
+const COMPS={
+  header:{num:'①',color:'#6366f1',name:'XcHeader',jss:'XcHeader (Polaris)',aem:'Custom Header Component',type:'Custom',risk:'High',pages:['Overview','Internet','Mobile','TV & Streaming','Home Security','Deals'],desc:'Global navigation bar. Auth-aware — renders different states for anonymous vs signed-in users. Built on Polaris design system. Appears on every page.',warn:'Dispatcher caching breaks with auth-aware nav. Must use ESI tags or client-side fragment for authenticated state injection.',info:'Two paths: (1) Rebuild in HTL + clientlib — AEM-native, cacheable, recommended. (2) Wrap Polaris React in clientlib — faster but fragile. Resolve Polaris npm registry access in Cloud Manager pipeline before dev starts.'},
+  footer:{num:'⑫',color:'#6366f1',name:'XcFooter',jss:'XcFooter (Polaris)',aem:'Custom Footer Component',type:'Custom',risk:'High',pages:['All Pages'],desc:'5-column link footer with brand logo, copyright, Privacy/Terms, social links. Same Polaris design system dependency as XcHeader.',warn:'Solve Polaris dependency ONCE — apply to both XcHeader and XcFooter together. Treating them as independent problems doubles risk and work.',info:'Build editable from ONE shared location (not per-page). Content model: linkColumns[] multifield, legalText RTE, copyrightText, socialLinks[]. Fully cacheable at Dispatcher.'},
+  subnav:{num:'②',color:'#fbbf24',name:'SubNavigation',jss:'InlineSubNav / XcNavTabs',aem:'AEM Core Navigation (Extended)',type:'Core Ext.',risk:'Low',pages:['Internet','Mobile','TV & Streaming','Home Security','Deals'],desc:'Section-level sub-navigation tabs (e.g., Overview / Plans / Equipment / Deals) on product learn pages. Highlights active section.',warn:'Active tab state must be driven by URL path — not hard-coded. Build current-page detection into the component, not the template.',info:'Extend AEM Core Navigation v1 with tabStyle policy and active-path selector. Dialog: linkItems[] (label + path), styleVariant (underline/pill). Current page detection via Sling request path.'},
+  geo:{num:'③',color:'#0ea5e9',name:'LocalizationSlim',jss:'LocalizationSlim',aem:'Custom Geo/Address Component',type:'Custom',risk:'High',pages:['Overview','Internet','Deals'],desc:'"Shopping from Herndon / Change" geo-aware bar. Drives offer personalisation across the entire page. Result stored in cookie — Akamai edge logic reads it.',warn:'Comcast address API cannot be called from AEM Cloud Publish tier. Must proxy via Adobe I/O Runtime or Comcast API Gateway. Akamai VCL rules must carry geo cookie — verify BEFORE go-live.',info:'API endpoint in data-attribute from OSGi config — never hardcoded. JS handles API call + cookie write + personalisation trigger. Test Akamai edge rule propagation in staging.'},
+  hero:{num:'④',color:'#f59e0b',name:'XjsFullImage',jss:'XjsFullImage',aem:'AEM Core Teaser v2 (Extended)',type:'Core Ext.',risk:'Med',pages:['Overview','Internet','Mobile','TV & Streaming','Deals'],desc:'Full-width hero with background image/gradient, foreground image, eyebrow, headline, body, price callout, and dual CTAs. Most-used component across the site.',warn:'Time-limited promotional heroes MUST have an expiryDate field + author-alert workflow. Stale Olympic hero post-event is a brand risk that WILL happen without this.',info:'Extend Teaser v2 via sling:resourceSuperType. Add: mobileImage, overlayPosition, expiryDate, backgroundTheme (light/dark), athleteName, athleteBadge, legalText. Use Adaptive Image Servlet for srcset.'},
+  promobanner:{num:'⑥',color:'#8b5cf6',name:'XjsFullImage (Promo Banner)',jss:'XjsFullImage (dark variant)',aem:'AEM Core Teaser v2 (Extended)',type:'Core Ext.',risk:'Low',pages:['Overview','Internet','Mobile','TV & Streaming','Deals'],desc:'Full-width dark background promotional banner. "Cut your bill in half", savings comparison banners. Dark variant of XjsFullImage.',warn:'Do NOT build a separate component. Same XjsFullImage with backgroundTheme:dark policy. Building separately creates component sprawl.',info:'Add backgroundTheme (light/dark) as component style policy in Editable Template. Same HTL template, different CSS class. One component, two visual variants.'},
+  twoup:{num:'③',color:'#f59e0b',name:'TwoUpPromo',jss:'XjsTwoUp / JssTwoColumnPromo',aem:'AEM Core Teaser v2 (Extended)',type:'Core Ext.',risk:'Low',pages:['Home Security'],desc:'Side-by-side 2-column promotional layout. Each column has image, headline, description, price, and CTA. Smart Home vs Home Security comparison.',warn:'Each column must be independently authorable — NOT a single component with left/right fields. Use a container with 2 nested Teaser instances.',info:'Build as 2-column parsys container (CSS Grid: 50/50). Each cell accepts Teaser v2. Grid gap and responsive stacking controlled by component policy.'},
+  streamsaver:{num:'⑥',color:'#a855f7',name:'StreamSaver / PromoBanner',jss:'XjsFullImage (streaming variant)',aem:'AEM Core Teaser v2 (Extended)',type:'Core Ext.',risk:'Low',pages:['TV & Streaming','Deals'],desc:'Dark streaming-branded banner with StreamSaver (Peacock + Apple TV+ + Netflix). Service logos, headline, sub-copy, and CTA.',warn:'Service logos (Peacock, Apple, Netflix) have brand guidelines. Create a locked DAM folder for approved partner logos — authors must not upload random logo files.',info:'Add logoImages[] multifield to XjsFullImage extended dialog for this variant. backgroundTheme:streaming uses a specific gradient. Same component, different policy variant.'},
+  bento:{num:'⑤',color:'#10b981',name:'JssBentoBox / BentoCard',jss:'JssBentoBox + JssBentoCard',aem:'Custom BentoContainer + BentoCard',type:'Custom',risk:'Med',pages:['Overview','Deals'],desc:'4-column benefit strip. Mixed card types: text+icon, large price callout, text-only. No AEM Core equivalent for this asymmetric layout.',warn:'3 distinct card variants must be ONE BentoCard component with a cardType dialog selector — not 3 separate components. Three components = authoring chaos and inconsistent styling.',info:'Build parsys-based BentoContainer (drag-orderable). BentoCard dialog: cardType selector (controls visible fields via dialog condition), icon, headline, bodyText, priceFigure, priceUnit, linkURL.'},
+  hovertile:{num:'⑤',color:'#f97316',name:'JssBentoBox (Hover Tiles)',jss:'JssBentoBox (tile variant)',aem:'Custom CardGrid + HoverTile',type:'Custom',risk:'Med',pages:['Overview','Home Security'],desc:'5-column product navigation tiles (Internet, Mobile, TV, Security, Build Your Plan) with image, label, link. Hover state swaps image.',warn:'CSS-only :hover for image swap — do NOT use JS-driven state. JS hover breaks Dispatcher caching and hurts performance.',info:'HoverTile dialog: defaultImage (DAM), hoverImage (DAM), label, linkURL. CSS: opacity transition on :hover. Touch fallback: tap toggles active class via minimal JS.'},
+  iconstack:{num:'⑧',color:'#a855f7',name:'XjsIconStackBlock',jss:'XjsIconStackBlock',aem:'Custom IconCard + List Container',type:'Custom',risk:'Low',pages:['Overview','Internet','TV & Streaming','Home Security'],desc:'Icon + headline + body text grid. Feature benefit callouts across all product pages.',warn:'Do NOT use individual icon PNGs uploaded to DAM per instance. Standardise on Polaris SVG sprite or icon font loaded via clientlib.',info:'IconCard dialog: iconClass (dropdown of Polaris icons), headline, bodyText, linkURL (optional). Container: parsys-based, CSS Grid. Columns configured via component policy (2/3/4 col).'},
+  plancards:{num:'⑤',color:'#ef4444',name:'PlanCard / PlanGrid',jss:'PlanCard + PlanGrid',aem:'Custom PlanCard + Grid Container',type:'Custom',risk:'High',pages:['Internet','Mobile','Deals'],desc:'Plan comparison cards showing speed/tier, price, feature list, and CTA. Featured card variant with highlighted border.',warn:'Pricing changes frequently. If API-driven in Sitecore, that integration MUST be re-architected for AEM Cloud egress restrictions. If manually authored, an expiry/review workflow is non-negotiable.',info:'Content model: planTier, planName, speedLabel, price, priceUnit, pricePeriod, featureList[] (multifield), isFeatured (bool), featuredTag, ctaLabel, ctaLink, expiryDate.'},
+  devicecards:{num:'⑦',color:'#ef4444',name:'Device Offer Cards',jss:'DeviceCardGrid',aem:'Custom DeviceCard + Grid Container',type:'Custom',risk:'High',pages:['Overview','Mobile','Deals'],desc:'4-column device offer grid. iPhone, Samsung, Google Pixel with dynamic pricing, brand badge, trade-in conditions, CTA.',warn:'Pricing changes WEEKLY. Offer expiry workflow with 48hr author notification is mandatory. A stale "$0 iPhone" offer post-expiry is a legal and brand risk.',info:'Content model: deviceBrand, deviceName, offerHeadline, price, priceUnit, tradeInRequired (bool), ctaLabel, ctaLink, expiryDate, badgeLabel, productImage. Expiry date triggers AEM workflow.'},
+  carousel:{num:'⑦',color:'#06b6d4',name:'JssCarousel',jss:'JssCarousel',aem:'AEM Core Carousel v1 (Extended)',type:'Core Ext.',risk:'Med',pages:['Overview','TV & Streaming'],desc:'Touch-enabled content carousel with dot/arrow navigation. Shows promotional content, device deals, TV feature highlights.',warn:'If multi-item-per-slide (2-3 cards visible), AEM Core Carousel v1 does NOT support this. You need a custom container with Splide.js or Swiper.',info:'Single-item: Core Carousel v1 with nested Teaser/Card components. Multi-item: custom carousel container using Splide.js. Track slide interactions in analytics datalayer.'},
+  comptable:{num:'⑦',color:'#06b6d4',name:'ComparisonTable',jss:'XjsComparisonTable',aem:'Custom Comparison Table Component',type:'Custom',risk:'Med',pages:['Mobile','Home Security'],desc:'Feature comparison grid. Xfinity vs competitors or plan vs plan. Check/cross marks per feature row.',warn:'Table data must be independently authored — do NOT hardcode competitor names or feature values in the template. Competitors change their plans.',info:'Content model: tableTitle, columns[] (label, isHighlighted bool), rows[] (featureLabel, values[] per column: check/cross/text). Responsive: scroll-x on mobile or collapse to cards.'},
+  tabs:{num:'⑥',color:'#06b6d4',name:'InlineTabsContainer',jss:'InlineTabsContainer',aem:'AEM Core Tabs v1 (Extended)',type:'Core Ext.',risk:'Low',pages:['TV & Streaming','Deals','Overview (below fold)'],desc:'Horizontal tab switcher for plan/offer comparison. Each panel contains dragged-in child components.',warn:'Tab click events MUST fire analytics datalayer events. Add data-tab-label and data-tab-id attributes to each tab button for the tracking script.',info:'AEM Core Tabs v1 handles container, ARIA roles, and keyboard nav out of the box. Extend for defaultActiveTab, tabStyle. Each panel is a nested parsys.'},
+  faq:{num:'⑦',color:'#10b981',name:'FAQAccordion',jss:'XjsFAQAccordion',aem:'AEM Core Accordion v1',type:'Core',risk:'Low',pages:['Internet','Home Security'],desc:'Expandable FAQ sections with question + answer pairs. Appears on Internet and Home Security learn pages.',warn:'FAQ content should be Content Fragments if the same answers appear across multiple pages. Duplicating FAQ in individual component instances creates content debt instantly.',info:'AEM Core Accordion v1 handles expand/collapse, ARIA, keyboard nav. No custom component needed. If FAQs repeat across pages, use Content Fragments — single source, referenced everywhere.'},
+  addressform:{num:'⑧',color:'#10b981',name:'AddressEntryForm',jss:'LocalizationSlim (full variant)',aem:'Custom Address Entry Component',type:'Custom',risk:'High',pages:['Mobile','TV & Streaming'],desc:'"Where do you live?" full-width address entry form. Larger variant of LocalizationSlim — includes heading, sub-copy, input + button.',warn:'Same API integration risk as LocalizationSlim. AEM Cloud Publish egress restrictions apply identically. Do NOT build as a separate component from LocalizationSlim.',info:'This is a layout/style variant of the same LocalizationSlim component. Add displayVariant dialog field (slim/full) that controls rendering context. Same API integration, same cookie logic.'},
+  awardbadge:{num:'⑦',color:'#fbbf24',name:'AwardBadge / TrustBadge',jss:'XjsTrustBadge',aem:'AEM Core Text or Custom',type:'Core',risk:'Low',pages:['Home Security'],desc:'Award citation bar (J.D. Power ranking, reliability stats). Icon + headline + supporting text. Builds trust and credibility.',warn:'Award claims have expiry dates and require legal review. Outdated award citations are a legal liability — author notification workflow strongly recommended.',info:'If simple: AEM Core Text styled with trust-badge CSS class via component policy. If structured: lightweight custom component with iconImage (DAM), headline, bodyText, expiryDate fields.'},
+  legal:{num:'⑨',color:'#ec4899',name:'Legal / Disclaimer',jss:'Inline text / XdsPage field',aem:'AEM Core Text Component (RTE)',type:'Core',risk:'Low',pages:['All Pages'],desc:'Fine print disclaimer bars below every offer section. Contains offer end dates, restrictions, eligibility conditions. Appears after every promotional component.',warn:'Legal text MUST NEVER be embedded inside hero or offer component body copy. Offer end dates change independently — they must be separately authorable.',info:'Straight AEM Core Text with RTE. Consider Content Fragments for legal text that repeats across pages — single source, referenced everywhere. Establish a legal text authoring workflow with compliance team.'},
 };
 
-let activeId=null, currentPage=0;
+let activeId=null,currentPage=0;
 
+/* ── SCALE MOCKUP ── */
+function scaleMockups(){
+  document.querySelectorAll('.mockup-scaler').forEach(scaler=>{
+    const mk=scaler.querySelector('.mockup');
+    if(!mk)return;
+    const availW=scaler.offsetWidth;
+    const scale=availW/820;
+    mk.style.transform=`scale(${scale})`;
+    scaler.style.height=(mk.scrollHeight*scale)+'px';
+  });
+}
+window.addEventListener('resize',scaleMockups);
+// observe canvas size changes too
+if(window.ResizeObserver){
+  new ResizeObserver(scaleMockups).observe(document.getElementById('canvas'));
+}
+
+/* ── PANEL TOGGLE (mobile) ── */
+function togglePanel(){
+  const p=document.getElementById('panel');
+  const bd=document.getElementById('backdrop');
+  const isOpen=p.classList.toggle('open');
+  bd.style.display=isOpen?'block':'none';
+}
+function closePanel(){
+  const p=document.getElementById('panel');
+  const bd=document.getElementById('backdrop');
+  p.classList.remove('open');
+  bd.style.display='none';
+}
+
+/* ── LEGEND BUILD ── */
 function buildLegend(){
   const list=document.getElementById('leg-list');
   list.innerHTML='';
   CATS.forEach(cat=>{
-    const catIds = cat.ids.filter(id=>COMPS[id]);
-    if(!catIds.length) return;
+    const catIds=cat.ids.filter(id=>COMPS[id]);
+    if(!catIds.length)return;
     const grp=document.createElement('div');
     grp.className='cat-group';
     grp.innerHTML=`<div class="cat-label">${cat.label}</div>`;
@@ -636,14 +646,14 @@ function buildLegend(){
           ${c.info?`<div class="ibox">💡 ${c.info}</div>`:''}
         </div>`;
       div.onclick=()=>{
-        // if this component exists on current page, just activate
         const annoOnPage=document.querySelector(`#pv-${currentPage} .anno[data-id="${id}"]`);
         if(!annoOnPage){
-          // find first page with this component
           const firstPage=[0,1,2,3,4,5].find(p=>document.querySelector(`#pv-${p} .anno[data-id="${id}"]`));
-          if(firstPage!==undefined){ switchPage(firstPage,false); setTimeout(()=>activate(id),60); return; }
+          if(firstPage!==undefined){switchPage(firstPage,false);setTimeout(()=>activate(id),80);return;}
         }
         activate(id);
+        // on mobile, close panel after selecting so user can see canvas
+        if(window.innerWidth<=900) closePanel();
       };
       div.addEventListener('mouseenter',()=>hov(id,true));
       div.addEventListener('mouseleave',()=>{if(activeId!==id)hov(id,false);});
@@ -663,11 +673,11 @@ function activate(id){
   const c=COMPS[id];
   if(c){
     document.getElementById('sel-disp').innerHTML=`
-      <div style="display:flex;align-items:center;gap:7px;justify-content:center;margin-bottom:5px">
-        <div style="width:9px;height:9px;border-radius:3px;background:${c.color};flex-shrink:0"></div>
-        <strong style="color:var(--text);font-size:11.5px">${c.num} ${c.name}</strong>
+      <div style="display:flex;align-items:center;gap:6px;justify-content:center;margin-bottom:4px">
+        <div style="width:8px;height:8px;border-radius:2px;background:${c.color};flex-shrink:0"></div>
+        <strong style="color:var(--text);font-size:11px">${c.num} ${c.name}</strong>
       </div>
-      <div style="color:var(--muted);font-size:9.5px;line-height:1.5">${c.type} · ${c.risk} Risk<br><span style="color:var(--muted2)">${c.pages.join(' · ')}</span></div>`;
+      <div style="color:var(--muted);font-size:9px;line-height:1.5">${c.type} · ${c.risk} Risk<br><span style="color:var(--muted2)">${c.pages.join(' · ')}</span></div>`;
   }
 }
 
@@ -680,17 +690,18 @@ function hov(id,on){
 function switchPage(idx,doActivate=true){
   currentPage=idx;
   document.querySelectorAll('.page-view').forEach((el,i)=>el.classList.toggle('active',i===idx));
-  document.querySelectorAll('#page-tabs .tab').forEach((el,i)=>el.classList.toggle('active',i===idx));
+  document.querySelectorAll('#page-tabs .ptab').forEach((el,i)=>el.classList.toggle('active',i===idx));
   document.getElementById('canvas').scrollTop=0;
+  setTimeout(scaleMockups,50);
   if(doActivate&&activeId){
-    const c=COMPS[activeId];
     const onPage=document.querySelector(`#pv-${idx} .anno[data-id="${activeId}"]`);
-    if(!onPage){document.querySelectorAll('.anno').forEach(el=>el.classList.remove('sel'));}
-    else{document.querySelectorAll('.anno').forEach(el=>el.classList.remove('sel'));document.querySelectorAll(`#pv-${idx} .anno[data-id="${activeId}"]`).forEach(el=>el.classList.add('sel'));}
+    document.querySelectorAll('.anno').forEach(el=>el.classList.remove('sel'));
+    if(onPage)document.querySelectorAll(`#pv-${idx} .anno[data-id="${activeId}"]`).forEach(el=>el.classList.add('sel'));
   }
 }
 
 buildLegend();
+setTimeout(scaleMockups,100);
 </script>
 </body>
 </html>
